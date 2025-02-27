@@ -1,10 +1,8 @@
 package delivery_App.BE.DTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class RegisterDTO {
     private String userId;
     private String name;
