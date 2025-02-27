@@ -3,7 +3,6 @@ package delivery_App.BE.Controller;
 import delivery_App.BE.DTO.AccessTokenResponseDTO;
 import delivery_App.BE.DTO.JwtResponseDTO;
 import delivery_App.BE.DTO.LoginDTO;
-import delivery_App.BE.JWT.JwtUtil;
 import delivery_App.BE.Service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
