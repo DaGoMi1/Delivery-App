@@ -13,7 +13,7 @@ import java.util.Objects;
 @Service // 자동으로 Bean 등록
 @RequiredArgsConstructor // final이 붙은 필드만 포함하는 생성자 생성
 @Transactional // update중 오류가 나면 자동 롤백
-public class MemberService {
+public class RegisterService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 

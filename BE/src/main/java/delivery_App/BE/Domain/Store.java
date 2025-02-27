@@ -52,7 +52,7 @@ public class Store {
     @Column(name = "category", length = 50)
     private String category;        // 카테고리
 
-    @Column(name = "rating", precision = 2, scale = 1)
+    @Column(name = "rating")
     private Double rating;          // 평점 (5점 만점)
 
     @Column(name = "created_at", updatable = false)
