@@ -3,7 +3,6 @@ package delivery_App.BE.Service;
 import delivery_App.BE.Domain.Member;
 import delivery_App.BE.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

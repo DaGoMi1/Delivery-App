@@ -2,7 +2,6 @@ package delivery_App.BE.JWT;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -10,10 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class JwtUtil {
@@ -29,7 +25,7 @@ public class JwtUtil {
     private SecretKey key;
     @PostConstruct
     public void init() {
-        // SECRET_KEY를 디코딩하여 key로 초기화
+        // SECRET_KEY 를 디코딩하여 key 로 초기화
         key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY));
     }
     // 엑세스 토큰 생성
@@ -52,12 +48,12 @@ public class JwtUtil {
                 .compact();
     }
 
-    // JWT에서 사용자 ID 추출
+    // JWT 에서 사용자 ID 추출
     public String extractUserId(String token) {
         return extractAllClaims(token).getSubject();
     }
 
-    // JWT의 모든 클레임 추출
+    // JWT 의 모든 클레임 추출
     private Claims extractAllClaims(String token) {
         return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
     }

@@ -1,7 +1,6 @@
 package delivery_App.BE.Config;
 
 import delivery_App.BE.JWT.JwtRequestFilter;
-import delivery_App.BE.JWT.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

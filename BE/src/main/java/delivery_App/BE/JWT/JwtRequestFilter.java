@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,7 +42,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         return null;
     }
 
-    // JWT를 검증하고 인증 정보를 설정
+    // JWT 를 검증하고 인증 정보를 설정
     private void authenticateUser(String jwt) {
         String userId = jwtUtil.extractUserId(jwt);
 
@@ -54,7 +53,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
     }
 
-    // SecurityContextHolder에 인증 정보 설정
+    // SecurityContextHolder 에 인증 정보 설정
     private void setAuthentication(String userId) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
         UsernamePasswordAuthenticationToken authentication =
