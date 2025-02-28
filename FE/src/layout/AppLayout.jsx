@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { Outlet } from 'react-router'
+import Navbar from './navbar/Navbar'
+import Footer from './footer/Footer'
 const AppLayout = () => {
 
   return (
     <div>
-      <h3>test</h3>
+      <Navbar/>
       <Outlet/>
-      <h3>test</h3>
+      <Footer/>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import {useNavigate} from 'react-router';
-import { useLoginQuery } from '../../hooks/useLoginQuery';
+import {useNavigate, Link} from 'react-router';
+import { useLoginQuery } from '../../hooks/user/useLoginQuery';
 import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ const LoginPage = () => {
       </div>
 
       <form className='p-4 flex flex-col gap-4'>
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="text" placeholder='이메일 아이디' />
+        <input value={email} onChange={(e)=>setEmail(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="text" placeholder='아이디' />
         <input value={password} onChange={(e)=>setPassword(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="password" placeholder='비밀번호'/>
         {isError && <ErrorBoundary error={error}/>}
         <button onClick={submitLogin} type='submit' className='bg-green-400 text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!email || !password}>로그인</button>
@@ -34,8 +34,8 @@ const LoginPage = () => {
       <div className='flex flex-col items-center text-gray-400 gap-4 text-center'>
         <div>아이디 또는 비밀번호를 잊으셨나요?</div>
         <div className='flex gap-4'>
-          <a href="">아이디 찾기</a>
-          <a href="">비밀번호 찾기</a>
+          <Link to="/searchId">아이디 찾기</Link>
+          <Link to="/searchPassword">비밀번호 찾기</Link>
         </div>
       </div>
     </div>
