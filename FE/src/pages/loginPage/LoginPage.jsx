@@ -3,7 +3,7 @@ import {useNavigate, Link} from 'react-router';
 import { useLoginQuery } from '../../hooks/user/useLoginQuery';
 import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   const submitLogin = (e) => {
     e.preventDefault();
-    login({email,password});
+    login({userId,password});
   }
 
   return (
@@ -22,10 +22,10 @@ const LoginPage = () => {
       </div>
 
       <form className='p-4 flex flex-col gap-4'>
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="text" placeholder='아이디' />
+        <input value={userId} onChange={(e)=>setUserId(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="text" placeholder='아이디' />
         <input value={password} onChange={(e)=>setPassword(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="password" placeholder='비밀번호'/>
         {isError && <ErrorBoundary error={error}/>}
-        <button onClick={submitLogin} type='submit' className='bg-green-400 text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!email || !password}>로그인</button>
+        <button onClick={submitLogin} type='submit' className='bg-green-400 text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!userId || !password}>로그인</button>
         <button onClick={()=>navigate('/register')} type='button' className='bg-green-400 text-white border-1 p-2 cursor-pointer'>회원가입</button>
       </form>
 
