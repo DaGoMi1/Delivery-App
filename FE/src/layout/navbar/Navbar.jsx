@@ -1,6 +1,9 @@
 import React from 'react'
 
 const Navbar = () => {
+  const submitSearchTerm = (e) => {
+    e.preventDefault();
+  }
   return (
     <div className='p-4'>
       <div className='flex justify-between'>
@@ -15,9 +18,9 @@ const Navbar = () => {
       </div>
 
       <div>
-        <form className='relative'>
+        <form className='relative' onSubmit={submitSearchTerm}>
           <input className='w-full border-1 rounded-xl p-1 pl-4 caret-green-600 focus:outline-green-600' type="text" />
-          <i class="fa-solid fa-magnifying-glass absolute right-1 top-2"></i>
+          <i class="fa-solid fa-magnifying-glass absolute right-2 top-2"></i>
         </form>
       </div>
     </div>

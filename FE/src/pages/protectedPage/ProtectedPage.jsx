@@ -3,8 +3,8 @@ import { Navigate, Outlet } from 'react-router';
 
 const ProtectedPage = () => {
   const token = localStorage.getItem("token");
-  return token ? <Outlet/> : <Navigate to='/login' replace/>
-  // return <Outlet/>
+  return <Outlet/>
+  // return token ? <Outlet/> : <Navigate to='/login' replace/>
 }
 
 export default ProtectedPage
