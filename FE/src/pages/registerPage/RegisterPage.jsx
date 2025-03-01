@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { useRegisterUserQuery } from '../../hooks/useRegisterUserQuery';
+import { useRegisterUserQuery } from '../../hooks/user/useRegisterUserQuery';
 import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
 
 const RegisterPage = () => {

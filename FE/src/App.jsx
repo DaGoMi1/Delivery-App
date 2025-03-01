@@ -12,6 +12,8 @@ import OrderListPage from './pages/orderListPage/OrderListPage'
 import MyPage from './pages/myPage/MyPage';
 import StorePage from './pages/storePage/StorePage';
 import ProtectedPage from './pages/protectedPage/ProtectedPage';
+import SearchIdPage from './pages/searchIdPage/SearchIdPage';
+import SearchPasswordPage from './pages/searchPasswordPage/SearchPasswordPage';
 function App() {
 
   return (
@@ -19,7 +21,8 @@ function App() {
       <Routes>
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/register' element={<RegisterPage/>}/>
-
+        <Route path='/searchId' element={<SearchIdPage/>}/>
+        <Route path='/searchPassword' element={<SearchPasswordPage/>}/>
         <Route element={<ProtectedPage/>}>
           <Route path='/storePage/:id' element={<StoreDetailPage/>}/>
           <Route path='/cartPage' element={<CartPage/>}/>
