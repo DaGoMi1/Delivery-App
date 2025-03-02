@@ -10,7 +10,14 @@ export const useLoginQuery = () => {
   const navigate = useNavigate();
   return useMutation({
     mutationFn : login,
-    onSuccess : () => navigate('/home'),
+    onSuccess : (data) => {
+      const accessToken = data.data.accessToken;
+      const refreshToken = data.data.refreshToken;
+      
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      navigate('/');
+    },
     onError : (error) => console.log(error)
   })
 }
