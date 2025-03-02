@@ -27,7 +27,8 @@ public class SecurityConfig {
         http
                 // 권한 설정
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/member/register", "/auth/login", "/auth/refresh-token").permitAll()
+                        .requestMatchers("/member/**", "/auth/**").permitAll()
+                        .requestMatchers("/role/**").hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

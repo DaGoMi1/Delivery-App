@@ -2,6 +2,8 @@ package Delivery.BE.Service;
 
 import Delivery.BE.DTO.RegisterDTO;
 import Delivery.BE.Domain.Member;
+import Delivery.BE.Exception.AlreadyRegisteredException;
+import Delivery.BE.Exception.InformationNotMatchException;
 import Delivery.BE.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +25,7 @@ public class RegisterService {
         validateEmail(registerDTO); // email 유효성 검사
         validatePasswordsMatch(registerDTO); // 비밀번호 일치 검사
 
-        Member member =  Member.builder()
+        Member member = Member.builder()
                 .userId(registerDTO.getUserId())
                 .password(bCryptPasswordEncoder.encode(registerDTO.getPassword())) // 비밀번호 암호화 후 저장
                 .name(registerDTO.getName())
@@ -36,20 +38,20 @@ public class RegisterService {
     }
 
     private void validateUserId(RegisterDTO registerDTO) {
-        if(memberRepository.findByUserId(registerDTO.getUserId()).isPresent()) {// userId가 이미 DB에 저장되어 있다면
-            throw new IllegalArgumentException("이미 존재하는 아이디입니다.");
+        if (memberRepository.findByUserId(registerDTO.getUserId()).isPresent()) {// userId가 이미 DB에 저장되어 있다면
+            throw new AlreadyRegisteredException("이미 존재하는 아이디입니다.");
         }
     }
 
     private void validateEmail(RegisterDTO registerDTO) {
-        if(memberRepository.findByEmail(registerDTO.getEmail()).isPresent()) {// email이 이미 DB에 저장되어 있다면
-            throw new IllegalArgumentException("이미 가입한 이메일입니다.");
+        if (memberRepository.findByEmail(registerDTO.getEmail()).isPresent()) {// email이 이미 DB에 저장되어 있다면
+            throw new AlreadyRegisteredException("이미 가입한 이메일입니다.");
         }
     }
 
     private void validatePasswordsMatch(RegisterDTO registerDTO) {
-        if(!Objects.equals(registerDTO.getPassword(), registerDTO.getPassword2())) { // 두 비밀번호가 일치하지 않는다면
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        if (!Objects.equals(registerDTO.getPassword(), registerDTO.getPassword2())) { // 두 비밀번호가 일치하지 않는다면
+            throw new InformationNotMatchException("비밀번호가 일치하지 않습니다.");
         }
     }
 }
