@@ -15,7 +15,7 @@ import ProtectedPage from './pages/protectedPage/ProtectedPage';
 import SearchIdPage from './pages/searchIdPage/SearchIdPage';
 import SearchPasswordPage from './pages/searchPasswordPage/SearchPasswordPage';
 function App() {
-
+  
   return (
     <>
       <Routes>

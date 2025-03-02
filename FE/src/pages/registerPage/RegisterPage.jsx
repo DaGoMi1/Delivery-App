@@ -17,7 +17,7 @@ const RegisterPage = () => {
 
   const submitUserForm = (e) => {
     e.preventDefault();
-    registerUser(userForm);
+    registerUser({userForm});
   }
 
   return (
