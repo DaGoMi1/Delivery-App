@@ -23,11 +23,13 @@ public class JwtUtil {
     private long REFRESH_TOKEN_EXPIRATION_TIME;// 30일
 
     private SecretKey key;
+
     @PostConstruct
     public void init() {
         // SECRET_KEY 를 디코딩하여 key 로 초기화
         key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY));
     }
+
     // 엑세스 토큰 생성
     public String generateAccessToken(String username) {
         return createToken(username, ACCESS_TOKEN_EXPIRATION_TIME);

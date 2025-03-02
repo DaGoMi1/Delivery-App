@@ -24,10 +24,10 @@ public class Member {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "name", nullable = false, length = 10)
+    @Column(name = "name", nullable = false, unique = true, length = 10)
     private String name;
 
-    @Column(name = "phone", length = 20)
+    @Column(name = "phone", nullable = false, unique = true, length = 20)
     private String phone;
 
     @Enumerated(EnumType.STRING)
