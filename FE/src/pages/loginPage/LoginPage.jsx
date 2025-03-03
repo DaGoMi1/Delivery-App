@@ -17,16 +17,16 @@ const LoginPage = () => {
   return (
     <div>
       <div className='text-center p-4'>
-        <h1 className='text-[36px] text-green-400'>배달의 부족</h1>
+        <h1 className='text-[36px] text-[var(--color-mainColor)]'>배달의 부족</h1>
         <p className='text-[18px]'>지금 맛있는 여정을 시작해보세요!</p>
       </div>
 
       <form className='p-4 flex flex-col gap-4'>
-        <input value={userId} onChange={(e)=>setUserId(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="text" placeholder='아이디' />
-        <input value={password} onChange={(e)=>setPassword(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' type="password" placeholder='비밀번호'/>
+        <input value={userId} onChange={(e)=>setUserId(e.target.value)} className='border-1 p-2 caret-[var(--color-mainColor)] focus:outline-[var(--color-mainColor)]' type="text" placeholder='아이디' />
+        <input value={password} onChange={(e)=>setPassword(e.target.value)} className='border-1 p-2 caret-[var(--color-mainColor)] focus:outline-[var(--color-mainColor)]' type="password" placeholder='비밀번호'/>
         {isError && <ErrorBoundary error={error}/>}
-        <button onClick={submitLogin} type='submit' className='bg-green-400 text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!userId || !password}>로그인</button>
-        <button onClick={()=>navigate('/register')} type='button' className='bg-green-400 text-white border-1 p-2 cursor-pointer'>회원가입</button>
+        <button onClick={submitLogin} type='submit' className='bg-[var(--color-mainColor)] text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!userId || !password}>로그인</button>
+        <button onClick={()=>navigate('/register')} type='button' className='bg-[var(--color-mainColor)] text-white border-1 p-2 cursor-pointer'>회원가입</button>
       </form>
 
 
