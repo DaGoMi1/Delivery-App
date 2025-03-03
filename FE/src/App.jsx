@@ -14,6 +14,7 @@ import StorePage from './pages/storePage/StorePage';
 import ProtectedPage from './pages/protectedPage/ProtectedPage';
 import SearchIdPage from './pages/searchIdPage/SearchIdPage';
 import SearchPasswordPage from './pages/searchPasswordPage/SearchPasswordPage';
+import SetAddressPage from './pages/setAddressPage/SetAddressPage';
 function App() {
   
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/searchId' element={<SearchIdPage/>}/>
         <Route path='/searchPassword' element={<SearchPasswordPage/>}/>
         <Route element={<ProtectedPage/>}>
+          <Route path='/setAddress' element={<SetAddressPage/>}/>
           <Route path='/storePage/:id' element={<StoreDetailPage/>}/>
           <Route path='/cartPage' element={<CartPage/>}/>
           <Route path='/' element={<AppLayout/>}>
