@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -60,4 +61,8 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public List<String> permitAllUrls() {
+        return List.of("/member/**", "/auth/**"); // permitAll() 경로 목록
+    }
 }

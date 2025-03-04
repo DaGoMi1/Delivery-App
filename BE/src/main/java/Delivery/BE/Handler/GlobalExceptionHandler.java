@@ -44,6 +44,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
+    @ExceptionHandler(JwtAuthenticationException.class) // Jwt 인증에 실패 했을 때
+    public ResponseEntity<String> handleJwtException(JwtAuthenticationException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+    }
+
     @ExceptionHandler(Exception.class) // 예상하지 못한 오류가 발생했을 때 (기타 모든 예외 처리)
     public ResponseEntity<?> handleGenericException(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류 발생: " + e.getMessage());

@@ -1,5 +1,6 @@
 package Delivery.BE.JWT;
 
+import Delivery.BE.Exception.JwtAuthenticationException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,17 +15,27 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
+    private final List<String> permitAllUrls;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+        String requestUri = request.getRequestURI();
         final String jwt = extractJwtFromRequest(request);
+
+        // permitAll이 아닌 URL에서 유효하지 않은 JWT 일때 예외 발생
+        if (!isPermitAllUrl(requestUri)) {
+            if (jwt == null || !jwtUtil.validateToken(jwt)) {
+                throw new JwtAuthenticationException("유효하지 않은 JWT 토큰입니다.");
+            }
+        }
 
         if (jwt != null) {
             authenticateUser(jwt);
@@ -47,7 +58,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String userId = jwtUtil.extractUserId(jwt);
 
         if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            if (jwtUtil.validateToken(jwt, userId)) {
+            if (jwtUtil.validateToken(jwt)) {
                 setAuthentication(userId);
             }
         }
@@ -59,6 +70,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
+
+    private boolean isPermitAllUrl(String requestUri) {
+        return permitAllUrls.contains(requestUri);
     }
 
 }

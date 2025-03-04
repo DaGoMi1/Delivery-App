@@ -60,14 +60,14 @@ public class JwtUtil {
         return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
     }
 
-    // 토큰 유효성 검사
-    public Boolean validateToken(String token, String userId) {
-        final String extractedUserId = extractUserId(token);
-        return (extractedUserId.equals(userId) && !isTokenExpired(token));
+    // 토큰 유효성 검사 (토큰 만료 여부만 체크)
+    public Boolean validateToken(String token) {
+        return !isTokenExpired(token);
     }
 
     // 토큰 만료 여부 확인
     private Boolean isTokenExpired(String token) {
         return extractAllClaims(token).getExpiration().before(new Date());
     }
+
 }

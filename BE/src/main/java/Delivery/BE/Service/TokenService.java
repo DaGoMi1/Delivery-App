@@ -38,7 +38,7 @@ public class TokenService {
         refreshToken = refreshToken.substring(7); // "Bearer " 부분 제거
         String userId = jwtUtil.extractUserId(refreshToken); // Refresh 토큰에서 userId 추출
 
-        if (!jwtUtil.validateToken(refreshToken, userId)) { // 토큰 검증
+        if (!jwtUtil.validateToken(refreshToken)) { // 토큰 검증
             throw new InvalidInputException("유효하지 않은 RefreshToken 입니다.");
         }
 
