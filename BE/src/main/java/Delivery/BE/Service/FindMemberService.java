@@ -31,7 +31,7 @@ public class FindMemberService {
     public void findUserId(FindMemberDTO findMemberDTO) {
         // 휴대폰 번호로 회원 조회
         Member member = memberRepository.findByPhone(findMemberDTO.getPhone())
-                .orElseThrow(() -> new UserNotFoundException("가입하지 않은 휴대폰 번호입니다."));
+                .orElseThrow(() -> new UserNotFoundException("입력한 폰 번호로 등록된 계정이 없습니다."));
 
         // Email 형식 만들기
         EmailFormDTO emailFormDTO = new EmailFormDTO();
@@ -115,7 +115,7 @@ public class FindMemberService {
 
             javaMailSender.send(message);
         } catch (MessagingException e) {
-            throw new EmailSendException("이메일 전송에 실패했습니다.", e);
+            throw new EmailSendException("이메일 전송 서비스가 일시적으로 사용 불가능합니다.", e);
         }
     }
 }

@@ -5,7 +5,7 @@ import Delivery.BE.DTO.JwtResponseDTO;
 import Delivery.BE.DTO.LoginDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Exception.InformationNotMatchException;
-import Delivery.BE.Exception.InvalidInputException;
+import Delivery.BE.Exception.JwtAuthenticationException;
 import Delivery.BE.JWT.JwtUtil;
 import Delivery.BE.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +39,7 @@ public class TokenService {
         String userId = jwtUtil.extractUserId(refreshToken); // Refresh 토큰에서 userId 추출
 
         if (!jwtUtil.validateToken(refreshToken)) { // 토큰 검증
-            throw new InvalidInputException("유효하지 않은 RefreshToken 입니다.");
+            throw new JwtAuthenticationException("유효하지 않은 RefreshToken 입니다.");
         }
 
         String newAccessToken = jwtUtil.generateAccessToken(userId); // Access 토큰 발급
