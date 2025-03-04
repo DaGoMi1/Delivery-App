@@ -20,7 +20,7 @@ public class RoleService {
 
     public void upgradeToOwner(RoleUpgradeDTO roleUpgradeDTO) {
         Member member = memberRepository.findByUserId(roleUpgradeDTO.getUserId())
-                .orElseThrow(() -> new UsernameNotFoundException("존재 하지 않는 사용자입니다."));
+                .orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 사용자입니다."));
 
         Member.Role role = member.getRole(); // 사용자의 권한 가져오기
 

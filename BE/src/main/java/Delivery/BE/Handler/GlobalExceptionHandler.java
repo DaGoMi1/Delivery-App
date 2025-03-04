@@ -31,17 +31,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmailSendException.class) // 이메일 전송 중 오류가 발생했을 때
     public ResponseEntity<?> handleEmailSend(EmailSendException e) {
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());
     }
 
     @ExceptionHandler(AlreadyRegisteredException.class) // 이미 등록된 사용자나 정보가 있을 때
     public ResponseEntity<?> handleAlreadyRegistered(AlreadyRegisteredException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-    }
-
-    @ExceptionHandler(InvalidInputException.class) // 잘못된 형식이나 유효하지 않은 값이 입력된 경우
-    public ResponseEntity<?> handleInvalidInput(InvalidInputException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
     @ExceptionHandler(JwtAuthenticationException.class) // Jwt 인증에 실패 했을 때
