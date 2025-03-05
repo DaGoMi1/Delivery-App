@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/4 작업 내용&#10;JWT 예외 추가 - 유효하지 않은 JWT 일때 예외 처리&#10;&#10;JWT 인증 방식 수정 - userId 부분 제외 후 간단히 바꿨음&#10;&#10;Bean 생성 - permitAll의 Url에 대한 리스트를 Bean으로 생성">
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/4 작업 내용&#10;예외 메시지 추가 및 수정">
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MenuCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/StoreCategory.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FindMemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FindMemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/OrderItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +156,8 @@
       <workItem from="1740811831942" duration="3704000" />
       <workItem from="1740896196439" duration="1304000" />
       <workItem from="1740897516890" duration="9907000" />
-      <workItem from="1741086191876" duration="5376000" />
+      <workItem from="1741086191876" duration="5744000" />
+      <workItem from="1741166752584" duration="13825000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -192,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741088403533</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="3/4 작업 내용&#10;예외 메시지 추가 및 수정">
+      <option name="closed" value="true" />
+      <created>1741091970737</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741091970737</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +218,7 @@
     <MESSAGE value="gitignore" />
     <MESSAGE value="3/2 작업 내용&#10;각종 예외 처리 - GlobalExceptionHandler 추가 + Exception 패키지 하위에 예외 추가)&#10;&#10;ID &amp; Password 찾기 기능 구현&#10;&#10;CUSTOMER -&gt; OWNER 권한 업그레이드 기능 구현" />
     <MESSAGE value="3/4 작업 내용&#10;JWT 예외 추가 - 유효하지 않은 JWT 일때 예외 처리&#10;&#10;JWT 인증 방식 수정 - userId 부분 제외 후 간단히 바꿨음&#10;&#10;Bean 생성 - permitAll의 Url에 대한 리스트를 Bean으로 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/4 작업 내용&#10;JWT 예외 추가 - 유효하지 않은 JWT 일때 예외 처리&#10;&#10;JWT 인증 방식 수정 - userId 부분 제외 후 간단히 바꿨음&#10;&#10;Bean 생성 - permitAll의 Url에 대한 리스트를 Bean으로 생성" />
+    <MESSAGE value="3/4 작업 내용&#10;예외 메시지 추가 및 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/4 작업 내용&#10;예외 메시지 추가 및 수정" />
   </component>
 </project>
