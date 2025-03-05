@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,13 +19,13 @@ import java.sql.Timestamp;
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId; // store_id에 맞춘 필드 이름
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;            // 가게 이름
 
-    @Column(name = "owner_id", nullable = false)
-    private Long ownerId;           // owner_id (BIGINT 에 맞춤)
+    @Column(name = "member_id", nullable = false)
+    private Long memberId;           // owner_id (BIGINT 에 맞춤)
 
     @Column(name = "description")
     private String description;     // 가게 설명
@@ -34,23 +36,15 @@ public class Store {
     @Column(name = "address")
     private String address;         // 주소
 
-    @Column(name = "latitude")
-    private Double latitude;        // 위도
-
-    @Column(name = "longitude")
-    private Double longitude;       // 경도
-
-    @Column(name = "status", columnDefinition = "ENUM('OPEN', 'CLOSED', 'TEMPORARILY_CLOSED') DEFAULT 'OPEN'")
-    private String status;          // 운영 상태 (OPEN, CLOSED, TEMPORARILY_CLOSED)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;          // 운영 상태 (OPEN, CLOSED, TEMPORARILY_CLOSED)
 
     @Column(name = "opening_hours", length = 50)
     private String openingHours;    // 영업 시간
 
     @Column(name = "logo_url")
     private String logoUrl;         // 로고 URL
-
-    @Column(name = "category", length = 50)
-    private String category;        // 카테고리
 
     @Column(name = "rating")
     private Double rating;          // 평점 (5점 만점)
@@ -61,13 +55,17 @@ public class Store {
     @Column(name = "updated_at")
     private Timestamp updatedAt;    // 수정 시간
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = new Timestamp(System.currentTimeMillis());
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "store_category",   // 중간 테이블 이름
+            joinColumns = @JoinColumn(name = "store_id"),  // Menu 와의 관계
+            inverseJoinColumns = @JoinColumn(name = "category_id")  // Category 와의 관계
+    )
+    private Set<Category> categories = new HashSet<>();
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = new Timestamp(System.currentTimeMillis());
+    public enum Status {
+        OPEN,
+        CLOSED,
+        TEMPORARILY_CLOSED
     }
 }

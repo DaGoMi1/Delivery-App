@@ -11,15 +11,15 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name = "reviews")
+@Table(name = "review")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewId;            // 리뷰 ID
+    private Long id;            // 리뷰 ID
 
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "member_id", nullable = false)
     private Long customerId;          // 사용자 ID (Review 테이블과 연결)
 
     @Column(name = "store_id", nullable = false)
@@ -36,14 +36,4 @@ public class Review {
 
     @Column(name = "updated_at")
     private Timestamp updatedAt;      // 수정 시간
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = new Timestamp(System.currentTimeMillis());
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = new Timestamp(System.currentTimeMillis());
-    }
 }

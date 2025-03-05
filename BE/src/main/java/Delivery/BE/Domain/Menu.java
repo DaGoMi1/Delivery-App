@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 @Getter
@@ -17,7 +19,7 @@ import java.sql.Timestamp;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long menuId;                // 메뉴 ID
+    private Long id;                // 메뉴 ID
 
     @Column(name = "store_id", nullable = false)
     private Long storeId;               // 가게 ID (Menu 테이블과 연결)
@@ -31,28 +33,17 @@ public class Menu {
     @Column(name = "price", nullable = false)
     private Double price;               // 가격
 
-    @Column(name = "category")
-    private String category;            // 카테고리
-
     @Column(name = "image_url")
     private String imageUrl;            // 메뉴 이미지 URL
 
     @Column(name = "is_available", nullable = false)
     private Boolean isAvailable;        // 메뉴 이용 가능 여부
 
-    @Column(name = "created_at", updatable = false)
-    private Timestamp createdAt;        // 생성 시간
-
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;        // 수정 시간
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = new Timestamp(System.currentTimeMillis());
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = new Timestamp(System.currentTimeMillis());
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "menu_category",   // 중간 테이블 이름
+            joinColumns = @JoinColumn(name = "menu_id"),  // Menu 와의 관계
+            inverseJoinColumns = @JoinColumn(name = "category_id")  // Category 와의 관계
+    )
+    private Set<Category> categories = new HashSet<>();
 }
