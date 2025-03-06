@@ -18,11 +18,11 @@ public class MenuCategory {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "menu_id")
+    @JoinColumn(name = "menu_id") // Menu 와 연결
     private Menu menu;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id") // Category 와 연결
     private Category category;
 
 }

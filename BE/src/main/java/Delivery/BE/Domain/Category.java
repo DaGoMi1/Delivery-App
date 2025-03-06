@@ -20,10 +20,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false, unique = true) // 카테고리 이름
     private String name;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url") // 카테고리 이미지 경로
     private String imageUrl;
 
     @ManyToMany(mappedBy = "categories")  // Menu 엔티티와의 관계

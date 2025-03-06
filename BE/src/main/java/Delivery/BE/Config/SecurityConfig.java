@@ -15,7 +15,6 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -28,7 +27,8 @@ public class SecurityConfig {
         http
                 // 권한 설정
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/member/**", "/auth/**").permitAll()
+                        .requestMatchers("/member/register", "/member/find-id", "/member/find-password"
+                                ,"/auth/**").permitAll()
                         .requestMatchers("/role/**").hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
@@ -48,7 +48,7 @@ public class SecurityConfig {
                     return config;
                 }))
 
-                // 세션 관리 (JWT 사용 시 STATELESS 모드)
+                // JWT 사용으로 인해 세션 관리는 STATELESS 모드
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 // JWT 필터 추가
@@ -59,10 +59,5 @@ public class SecurityConfig {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public List<String> permitAllUrls() {
-        return List.of("/member/**", "/auth/**"); // permitAll() 경로 목록
     }
 }
