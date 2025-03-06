@@ -18,10 +18,10 @@ public class StoreCategory {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id") // Store 와 연결
     private Store store;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id") // Category 와 연결
     private Category category;
 }

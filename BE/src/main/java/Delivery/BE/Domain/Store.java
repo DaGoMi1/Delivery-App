@@ -21,39 +21,39 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
-    private String name;            // 가게 이름
+    @Column(name = "name", nullable = false, length = 100) // 가게 이름
+    private String name;
 
-    @Column(name = "member_id", nullable = false)
-    private Long memberId;           // owner_id (BIGINT 에 맞춤)
+    @Column(name = "member_id", nullable = false) // Member 와 연결
+    private Long memberId;
 
-    @Column(name = "description")
-    private String description;     // 가게 설명
+    @Column(name = "description") // 가게 설명
+    private String description;
 
-    @Column(name = "phone", length = 20)
-    private String phone;           // 전화번호
+    @Column(name = "phone", length = 20) // 가게 전화번호
+    private String phone;
 
-    @Column(name = "address")
-    private String address;         // 주소
+    @Column(name = "address") // 가게 주소
+    private String address;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private Status status;          // 운영 상태 (OPEN, CLOSED, TEMPORARILY_CLOSED)
+    @Column(name = "status") // 가게 운영 상태 (OPEN, CLOSED, TEMPORARILY_CLOSED)
+    private Status status;
 
-    @Column(name = "opening_hours", length = 50)
-    private String openingHours;    // 영업 시간
+    @Column(name = "opening_hours", length = 50) // 가게 영업 시간
+    private String openingHours;
 
-    @Column(name = "logo_url")
-    private String logoUrl;         // 로고 URL
+    @Column(name = "logo_url") // 가게 로고 경로
+    private String logoUrl;
 
-    @Column(name = "rating")
-    private Double rating;          // 평점 (5점 만점)
+    @Column(name = "rating") // 가게 평점
+    private Double rating;
 
-    @Column(name = "created_at", updatable = false)
-    private Timestamp createdAt;    // 생성 시간
+    @Column(name = "created_at", updatable = false) // 가게 생성 시각
+    private Timestamp createdAt;
 
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;    // 수정 시간
+    @Column(name = "updated_at") // 가게 업데이트 시각
+    private Timestamp updatedAt;
 
     @ManyToMany
     @JoinTable(

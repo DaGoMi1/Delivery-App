@@ -20,7 +20,7 @@ import java.security.SecureRandom;
 
 @Service
 @RequiredArgsConstructor
-public class FindMemberService {
+public class MemberService {
     private final MemberRepository memberRepository;
     private final JavaMailSender javaMailSender;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -117,5 +117,18 @@ public class FindMemberService {
         } catch (MessagingException e) {
             throw new EmailSendException("이메일 전송 서비스가 일시적으로 사용 불가능합니다.", e);
         }
+    }
+
+    public Member findMemberByUserId(String userId) {
+        return memberRepository.findByUserId(userId)
+                .orElseThrow(()-> new UserNotFoundException("해당 사용자를 찾을 수 없습니다."));
+    }
+
+    @Transactional
+    public void withdrawMember(String userId) {
+        Member member = memberRepository.findByUserId(userId)
+                .orElseThrow(()-> new UserNotFoundException("해당 사용자를 찾을 수 없습니다."));
+
+        memberRepository.delete(member);
     }
 }

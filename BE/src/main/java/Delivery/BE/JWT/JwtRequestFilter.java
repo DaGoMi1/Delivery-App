@@ -22,7 +22,8 @@ import java.util.List;
 public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
-    private final List<String> permitAllUrls;
+    private static final List<String> PERMIT_ALL_URLS = List.of("/member/register", "/member/find-id"
+            ,"/member/find-password", "/auth/**");
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
@@ -73,7 +74,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
 
     private boolean isPermitAllUrl(String requestUri) {
-        return permitAllUrls.contains(requestUri);
+        return PERMIT_ALL_URLS.contains(requestUri);
     }
 
 }
