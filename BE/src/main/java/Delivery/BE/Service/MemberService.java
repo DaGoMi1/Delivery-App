@@ -5,6 +5,7 @@ import Delivery.BE.DTO.FindMemberDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Exception.EmailSendException;
 import Delivery.BE.Exception.InformationNotMatchException;
+import Delivery.BE.Exception.JwtAuthenticationException;
 import Delivery.BE.Exception.UserNotFoundException;
 import Delivery.BE.Repository.MemberRepository;
 import jakarta.mail.MessagingException;
@@ -12,6 +13,9 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +31,30 @@ public class MemberService {
 
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
     private static final int PASSWORD_LENGTH = 8;
+
+    public Member getMemberInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null) {
+            throw new JwtAuthenticationException("인증되지 않은 사용자입니다.");
+        }
+
+        Object principal = authentication.getPrincipal();
+        String userId;
+
+        if (principal instanceof User) {
+            userId = ((User) principal).getUsername();
+        } else {
+            throw new JwtAuthenticationException("유효하지 않은 인증 정보입니다.");
+        }
+
+        Member member = findMemberByUserId(userId);
+        if (member == null) {
+            throw new UserNotFoundException("회원 정보를 찾을 수 없습니다.");
+        }
+
+        return member;
+    }
 
     public void findUserId(FindMemberDTO findMemberDTO) {
         // 휴대폰 번호로 회원 조회

@@ -40,7 +40,7 @@ public class SecurityConfig {
                 // CORS 설정
                 .cors(auth -> auth.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(Collections.singletonList("http://localhost:5173"));
+                    config.setAllowedOrigins(Collections.singletonList("http://localhost:5174"));
                     config.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PATCH"));
                     config.setAllowCredentials(true);
                     config.setAllowedHeaders(Collections.singletonList("*"));

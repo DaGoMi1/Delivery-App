@@ -4,22 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/6 작업 내용&#10;DB 구조 변경 - Order, OrderItem 삭제 (추후 추가 예정), Category 테이블 생성 및 Store-Category, Menu-Category 관계 지정">
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/OrderItem.java" afterDir="false" />
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/6 작업 내용&#10;회원 기능 - 회원 정보 조회 기능, 회원 탈퇴 기능 구현&#10;&#10;DB 구조 - Order와 OrderItem 정의 &#10;&#10;서비스 이름 변경 - FindMemberService -&gt; MemberService">
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MenuCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MenuCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/StoreCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/StoreCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MemberController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/JWT/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/JWT/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/JWT/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/JWT/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,8 +135,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.39" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.39" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
   </component>
@@ -163,7 +157,11 @@
       <workItem from="1740897516890" duration="9907000" />
       <workItem from="1741086191876" duration="5744000" />
       <workItem from="1741166752584" duration="22620000" />
-      <workItem from="1741241005247" duration="1194000" />
+      <workItem from="1741241005247" duration="5549000" />
+      <workItem from="1741270517916" duration="498000" />
+      <workItem from="1741324920932" duration="185000" />
+      <workItem from="1741510695612" duration="73000" />
+      <workItem from="1741510841809" duration="4609000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -221,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741183836741</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="3/6 작업 내용&#10;회원 기능 - 회원 정보 조회 기능, 회원 탈퇴 기능 구현&#10;&#10;DB 구조 - Order와 OrderItem 정의 &#10;&#10;서비스 이름 변경 - FindMemberService -&gt; MemberService">
+      <option name="closed" value="true" />
+      <created>1741253406596</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741253406596</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +240,8 @@
     <MESSAGE value="3/4 작업 내용&#10;JWT 예외 추가 - 유효하지 않은 JWT 일때 예외 처리&#10;&#10;JWT 인증 방식 수정 - userId 부분 제외 후 간단히 바꿨음&#10;&#10;Bean 생성 - permitAll의 Url에 대한 리스트를 Bean으로 생성" />
     <MESSAGE value="3/4 작업 내용&#10;예외 메시지 추가 및 수정" />
     <MESSAGE value="3/5 작업 내용&#10;DB 구조 변경 - Order, OrderItem 삭제 (추후 추가 예정), Category 테이블 생성 및 Store-Category, Menu-Category 관계 지정" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/5 작업 내용&#10;DB 구조 변경 - Order, OrderItem 삭제 (추후 추가 예정), Category 테이블 생성 및 Store-Category, Menu-Category 관계 지정" />
+    <MESSAGE value="3/6 작업 내용&#10;회원 기능 - 회원 정보 조회 기능, 회원 탈퇴 기능 구현&#10;&#10;DB 구조 - Order와 OrderItem 정의 &#10;&#10;서비스 이름 변경 - FindMemberService -&gt; MemberService" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/6 작업 내용&#10;회원 기능 - 회원 정보 조회 기능, 회원 탈퇴 기능 구현&#10;&#10;DB 구조 - Order와 OrderItem 정의 &#10;&#10;서비스 이름 변경 - FindMemberService -&gt; MemberService" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

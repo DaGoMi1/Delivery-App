@@ -6,8 +6,11 @@ import Delivery.BE.Domain.Member;
 import Delivery.BE.Service.MemberService;
 import Delivery.BE.Service.RegisterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -35,11 +38,9 @@ public class MemberController {
         return ResponseEntity.ok("이메일 전송 완료");
     }
 
-    @GetMapping("/info") // Member 정보 요청
+    @GetMapping("/info")
     public ResponseEntity<?> info() {
-        // SecurityContextHolder에 저장된 userId 가져오기
-        String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Member member = memberService.findMemberByUserId(userId); // userId로 Member 찾기
+        Member member = memberService.getMemberInfo();
         return ResponseEntity.ok(member);
     }
 
