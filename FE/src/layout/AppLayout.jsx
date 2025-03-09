@@ -7,8 +7,10 @@ const AppLayout = () => {
   return (
     <div>
       <Navbar/>
-      <Outlet/>
-      <div className='fixed bottom-[0] w-full bg-white py-2'>
+      <div className='min-h-[595px]'>
+        <Outlet/>
+      </div>
+      <div className='fixed bottom-[0] w-[400px] bg-white py-2 z-[10]'>
         <Footer/>
       </div>
     </div>

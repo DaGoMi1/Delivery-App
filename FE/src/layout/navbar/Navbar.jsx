@@ -6,7 +6,7 @@ const Navbar = () => {
   const location = useLocation();
   const { pathname } = location;
   return (
-    <div className='font-bold px-4 py-2 bg-[rgb(42,193,188)]'>
+    <div className='font-bold px-4 py-2 bg-[var(--color-mainColor)]'>
       <div className='flex justify-between'>
         <div className='flex gap-2'>
           <p>동구 범일로 41</p>
