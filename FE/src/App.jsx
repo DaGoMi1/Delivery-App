@@ -18,24 +18,29 @@ function App() {
   
   return (
     <>
-      <Routes>
-        <Route path='/login' element={<LoginPage/>}/>
-        <Route path='/register' element={<RegisterPage/>}/>
-        <Route path='/searchId' element={<SearchIdPage/>}/>
-        <Route path='/searchPassword' element={<SearchPasswordPage/>}/>
-        <Route element={<ProtectedPage/>}>
-          <Route path='/setAddress' element={<SetAddressPage/>}/>
-          <Route path='/storePage/:id' element={<StoreDetailPage/>}/>
-          <Route path='/cartPage' element={<CartPage/>}/>
-          <Route path='/' element={<AppLayout/>}>
-            <Route index element={<HomePage/>}/>
-            <Route path='/interest' element={<InterestPage/>}/>
-            <Route path='/orderList' element={<OrderListPage/>}/>
-            <Route path='/myPage' element={<MyPage/>}/>
-            <Route path='/storePage' element={<StorePage/>}/>
-          </Route>
-        </Route>
-      </Routes>
+      <div className='lg:flex lg:justify-center'>
+        <div className='lg:w-[400px] lg:box-content lg:border-1 z-[1] bg-white lg:min-h-[695px]'>
+          <Routes>
+            <Route path='/login' element={<LoginPage/>}/>
+            <Route path='/register' element={<RegisterPage/>}/>
+            <Route path='/searchId' element={<SearchIdPage/>}/>
+            <Route path='/searchPassword' element={<SearchPasswordPage/>}/>
+            <Route element={<ProtectedPage/>}>
+              <Route path='/setAddress' element={<SetAddressPage/>}/>
+              <Route path='/storePage/:id' element={<StoreDetailPage/>}/>
+              <Route path='/cartPage' element={<CartPage/>}/>
+              <Route path='/' element={<AppLayout/>}>
+                <Route index element={<HomePage/>}/>
+                <Route path='/interest' element={<InterestPage/>}/>
+                <Route path='/orderList' element={<OrderListPage/>}/>
+                <Route path='/myPage' element={<MyPage/>}/>
+                <Route path='/storePage' element={<StorePage/>}/>
+              </Route>
+            </Route>
+          </Routes>
+        </div>
+        <div className='bg-gray-400 w-full h-full fixed z-[0]'></div>
+      </div>
     </>
   )
 }

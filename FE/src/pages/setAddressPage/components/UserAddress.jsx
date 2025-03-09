@@ -5,11 +5,15 @@ const UserAddress = () => {
   const addressList = useUserStore((state)=>state.user.address);
   const sortedAddressList = addressList.sort((a,b)=>b.isChecked-a.isChecked);
   
-  // 나중에 클릭 시 isChecked를 변경하는 useMutation 만들어야함.
+  const handleCurrentAddress = (address) => {
+    console.log(address);
+    // 클릭한 것을 isChecked : true
+    // 원래 isChecked : false
+  }
   return (
     <div className='p-4 bg-white flex flex-col gap-8'>
       {sortedAddressList.map((address)=>(
-        <div className='flex items-center gap-4 cursor-pointer'>
+        <div className='flex items-center gap-4 cursor-pointer' onClick={()=>handleCurrentAddress(address)}>
           <div><i className={`fa-solid fa-location-dot ${address.isChecked ? "" : "text-gray-400"}`}></i></div>
           <div>
             <h1 className='text-[17px] flex items-center gap-2'>
