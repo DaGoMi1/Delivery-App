@@ -39,4 +39,11 @@ public class AddressController {
         addressService.deleteAddress(addressDTO);
         return ResponseEntity.ok("Member의 주소 삭제 완료");
     }
+
+    @PatchMapping("/set-main")
+    public ResponseEntity<?> setMain(@RequestBody AddressDTO addressDTO) {
+        Member member = memberService.getMemberInfo();
+        addressService.setMainAddress(addressDTO, member);
+        return ResponseEntity.ok("대표 주소 설정 완료");
+    }
 }

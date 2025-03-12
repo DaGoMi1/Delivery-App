@@ -26,6 +26,9 @@ public class MemberAddress {
     @Column(name = "detail_address")
     private String detailAddress;
 
+    @Column(name = "is_main")
+    private boolean isMain;
+
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
