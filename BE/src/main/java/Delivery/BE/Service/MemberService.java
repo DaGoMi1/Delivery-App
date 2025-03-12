@@ -1,12 +1,10 @@
 package Delivery.BE.Service;
 
+import Delivery.BE.DTO.ChangePasswordDTO;
 import Delivery.BE.DTO.EmailFormDTO;
 import Delivery.BE.DTO.FindMemberDTO;
 import Delivery.BE.Domain.Member;
-import Delivery.BE.Exception.EmailSendException;
-import Delivery.BE.Exception.InformationNotMatchException;
-import Delivery.BE.Exception.JwtAuthenticationException;
-import Delivery.BE.Exception.UserNotFoundException;
+import Delivery.BE.Exception.*;
 import Delivery.BE.Repository.MemberRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -158,5 +156,29 @@ public class MemberService {
                 .orElseThrow(()-> new UserNotFoundException("해당 사용자를 찾을 수 없습니다."));
 
         memberRepository.delete(member);
+    }
+
+    @Transactional
+    public  void changePassword(ChangePasswordDTO changePasswordDTO) {
+        String newPassword = changePasswordDTO.getNewPassword();
+        String newPassword2 = changePasswordDTO.getNewPassword2();
+        String oldPassword = changePasswordDTO.getOldPassword();
+
+        Member member = getMemberInfo();
+
+        if(newPassword.equals(oldPassword)) {
+            throw new PasswordReuseException("직전에 사용한 비밀번호를 재사용 할 수 없습니다.");
+        }
+
+        if(!newPassword.equals(newPassword2)) {
+            throw new InformationNotMatchException("새로운 비밀번호가 일치하지 않습니다.");
+        }
+
+        if(!passwordEncoder.matches(oldPassword, member.getPassword())) {
+            throw new JwtAuthenticationException("비밀번호 인증에 실패하였습니다.");
+        }
+
+        member.setPassword(passwordEncoder.encode(newPassword));
+        memberRepository.save(member);
     }
 }

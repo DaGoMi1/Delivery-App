@@ -1,16 +1,14 @@
 package Delivery.BE.Controller;
 
+import Delivery.BE.DTO.ChangePasswordDTO;
 import Delivery.BE.DTO.FindMemberDTO;
 import Delivery.BE.DTO.RegisterDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Service.MemberService;
 import Delivery.BE.Service.RegisterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -49,5 +47,11 @@ public class MemberController {
         String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         memberService.withdrawMember(userId);
         return ResponseEntity.ok("회원 탈퇴 완료");
+    }
+
+    @PatchMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
+        memberService.changePassword(changePasswordDTO);
+        return ResponseEntity.ok("비밀번호 변경 완료");
     }
 }

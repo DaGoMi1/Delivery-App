@@ -3,6 +3,9 @@ package Delivery.BE.Domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -33,6 +36,12 @@ public class Member {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false) // 역할 정의
     private Role role;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MemberAddress> addresses = new ArrayList<>();
+
+    @Column(name = "main_address")
+    private Long mainAddress;
 
     public enum Role {
         CUSTOMER,   // 손님
