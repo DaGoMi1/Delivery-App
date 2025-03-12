@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/9 작업 내용&#10;JWT - 인증 방식 수정&#10;&#10;GetMember - Member 정보 요청 코드 수정">
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/AddressController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/AddressDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ChangePasswordDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MemberAddress.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Exception/AddressNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Exception/MissingRequiredDataException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Exception/PasswordReuseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/AddressRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/AddressService.java" afterDir="false" />
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/12 작업 내용&#10;Address - Member의 주소 관련 기능 구현 (추가, 수정, 삭제, 조회)&#10;&#10;ChangePassword - 비밀번호 변경 기능 구현&#10;&#10;예외 - 위 기능 구현시 필요한 예외 클래스 추가">
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/AddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/AddressDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MemberAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MemberAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/AddressService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +161,7 @@
       <workItem from="1741324920932" duration="185000" />
       <workItem from="1741510695612" duration="73000" />
       <workItem from="1741510841809" duration="5221000" />
-      <workItem from="1741757989014" duration="7986000" />
+      <workItem from="1741757989014" duration="10998000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -245,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741516922067</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="3/12 작업 내용&#10;Address - Member의 주소 관련 기능 구현 (추가, 수정, 삭제, 조회)&#10;&#10;ChangePassword - 비밀번호 변경 기능 구현&#10;&#10;예외 - 위 기능 구현시 필요한 예외 클래스 추가">
+      <option name="closed" value="true" />
+      <created>1741766972177</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1741766972177</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +258,8 @@
     <MESSAGE value="3/5 작업 내용&#10;DB 구조 변경 - Order, OrderItem 삭제 (추후 추가 예정), Category 테이블 생성 및 Store-Category, Menu-Category 관계 지정" />
     <MESSAGE value="3/6 작업 내용&#10;회원 기능 - 회원 정보 조회 기능, 회원 탈퇴 기능 구현&#10;&#10;DB 구조 - Order와 OrderItem 정의 &#10;&#10;서비스 이름 변경 - FindMemberService -&gt; MemberService" />
     <MESSAGE value="3/9 작업 내용&#10;JWT - 인증 방식 수정&#10;&#10;GetMember - Member 정보 요청 코드 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/9 작업 내용&#10;JWT - 인증 방식 수정&#10;&#10;GetMember - Member 정보 요청 코드 수정" />
+    <MESSAGE value="3/12 작업 내용&#10;Address - Member의 주소 관련 기능 구현 (추가, 수정, 삭제, 조회)&#10;&#10;ChangePassword - 비밀번호 변경 기능 구현&#10;&#10;예외 - 위 기능 구현시 필요한 예외 클래스 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/12 작업 내용&#10;Address - Member의 주소 관련 기능 구현 (추가, 수정, 삭제, 조회)&#10;&#10;ChangePassword - 비밀번호 변경 기능 구현&#10;&#10;예외 - 위 기능 구현시 필요한 예외 클래스 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

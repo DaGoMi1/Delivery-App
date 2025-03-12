@@ -1,8 +1,6 @@
 package Delivery.BE.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 public class AddressDTO {
@@ -10,11 +8,13 @@ public class AddressDTO {
     private String address;
     private String alias;
     private String detailAddress;
+    private boolean isMain;
 
-    public AddressDTO(Long id, String address, String alias, String detailAddress) {
+    public AddressDTO(Long id, String address, String alias, String detailAddress, boolean isMain) {
         this.id = id;
         this.address = address;
         this.alias = alias;
         this.detailAddress = detailAddress;
+        this.isMain = isMain;
     }
 }
