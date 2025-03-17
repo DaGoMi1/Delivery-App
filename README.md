@@ -30,7 +30,7 @@
 
 ## 🗂 ERD 및 아키텍처
 
-![ERD](https://drive.google.com/file/d/1NwxAfwWm77QdKvtVt4K1UndHKuJ1FdgL/view?usp=drive_link) 
+![ERD](https://drive.google.com/file/d/1NwxAfwWm77QdKvtVt4K1UndHKuJ1FdgL/view?usp=sharing) 
 
 ---
 
