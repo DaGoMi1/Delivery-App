@@ -40,7 +40,7 @@ public class AddressController {
         return ResponseEntity.ok("Member의 주소 삭제 완료");
     }
 
-    @PatchMapping("/set-main")
+    @PatchMapping("/main")
     public ResponseEntity<?> setMain(@RequestBody AddressDTO addressDTO) {
         Member member = memberService.getMemberInfo();
         addressService.setMainAddress(addressDTO, member);
