@@ -40,6 +40,9 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MemberAddress> addresses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Store> stores = new ArrayList<>();
+
     @Column(name = "main_address")
     private Long mainAddress;
 

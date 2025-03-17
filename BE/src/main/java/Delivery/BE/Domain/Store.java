@@ -1,10 +1,7 @@
 package Delivery.BE.Domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
@@ -16,6 +13,7 @@ import java.util.Set;
 @Table(name = "store")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +22,9 @@ public class Store {
     @Column(name = "name", nullable = false, length = 100) // 가게 이름
     private String name;
 
-    @Column(name = "member_id", nullable = false) // Member 와 연결
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false) // Member 와 연결
+    private Member member;
 
     @Column(name = "description") // 가게 설명
     private String description;

@@ -3,8 +3,10 @@ package Delivery.BE.Handler;
 import Delivery.BE.Exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -57,6 +59,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AddressNotFoundException.class) // id로 주소를 찾을 수 없을 때
     public ResponseEntity<?> handleAddressNotFound(AddressNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class) // DTO 검증 실패 했을 때
+    public ResponseEntity<?> handleValidationExceptions(MethodArgumentNotValidException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
     @ExceptionHandler(Exception.class) // 예상하지 못한 오류가 발생했을 때 (기타 모든 예외 처리)
