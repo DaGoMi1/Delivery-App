@@ -10,7 +10,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +27,10 @@ public class SecurityConfig {
         http
                 // 권한 설정
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/member/register", "/auth/login", "/auth/refresh-token").permitAll()
+                        .requestMatchers("/member/register", "/member/find-id", "/member/find-password"
+                                ,"/auth/**").permitAll()
+                        .requestMatchers("/role/**").hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
+                        .requestMatchers("/store/**").hasAnyRole( "OWNER", "ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -31,11 +38,22 @@ public class SecurityConfig {
                 // CSRF 비활성화
                 .csrf(AbstractHttpConfigurer::disable)
 
-                // 세션 관리 (JWT 사용 시 STATELESS 모드)
+                // CORS 설정
+                .cors(auth -> auth.configurationSource(request -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowedOrigins(Collections.singletonList("http://localhost:5174"));
+                    config.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PATCH"));
+                    config.setAllowCredentials(true);
+                    config.setAllowedHeaders(Collections.singletonList("*"));
+                    config.setMaxAge(3600L);
+                    return config;
+                }))
+
+                // JWT 사용으로 인해 세션 관리는 STATELESS 모드
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 // JWT 필터 추가
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterAfter(jwtRequestFilter, BasicAuthenticationFilter.class);
         return http.build();
     }
 
@@ -43,5 +61,4 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

@@ -3,6 +3,9 @@ package Delivery.BE.Domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -15,24 +18,33 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userId", nullable = false, unique = true)
+    @Column(name = "userId", nullable = false, unique = true) // 아이디
     private String userId;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true) // 이메일
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false) // 비밀번호
     private String password;
 
-    @Column(name = "name", nullable = false, length = 10)
+    @Column(name = "name", nullable = false, unique = true, length = 10) // 닉네임
     private String name;
 
-    @Column(name = "phone", length = 20)
+    @Column(name = "phone", nullable = false, unique = true, length = 20) // 휴대폰 번호
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Role role; // enum 으로 역할 정의
+    @Column(name = "role", nullable = false) // 역할 정의
+    private Role role;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MemberAddress> addresses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Store> stores = new ArrayList<>();
+
+    @Column(name = "main_address")
+    private Long mainAddress;
 
     public enum Role {
         CUSTOMER,   // 손님

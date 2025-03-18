@@ -17,29 +17,32 @@ import java.sql.Timestamp;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;           // 주문 ID
+    private Long id;
 
-    @Column(name = "customer_id", nullable = false)
-    private Long customerId;        // 사용자 ID
+    @Column(name = "order_date", updatable = false) // 주문 시각
+    private Timestamp orderDate;
 
-    @Column(name = "store_id", nullable = false)
-    private Long storeId;           // 가게 ID
+    @Column(name = "total_amount", nullable = false) // 주문 총 가격
+    private int totalAmount;
 
-    @Column(name = "order_date", nullable = false)
-    private Timestamp orderDate;    // 주문 시간
+    @Column(name = "payment_method") // 주문 결제 방법
+    private String paymentMethod;
 
-    @Column(name = "status", nullable = false)
-    private String status;          // 주문 상태 (PENDING, COMPLETED, CANCELLED)
+    @Column(name = "special_instructions") // 주문 요청사항
+    private String specialInstructions;
 
-    @Column(name = "total_amount", nullable = false)
-    private Double totalAmount;     // 총 금액
+    @Column(name = "status", nullable = false) // 주문 상태
+    private Status status;
 
-    @Column(name = "payment_method")
-    private String paymentMethod;    // 결제 방법
+    @Column(name = "member_id", nullable = false) // Member 와 연결
+    private Long memberId;
 
-    @Column(name = "delivery_address")
-    private String deliveryAddress;  // 배달 주소
+    @Column(name = "member_address_id", nullable = false) // Member_Address 와 연결
+    private Long memberAddressId;
 
-    @Column(name = "special_instructions")
-    private String specialInstructions; // 추가 메모
+    public enum Status {
+        PENDING,
+        COMPLETED,
+        CANCELLED
+    }
 }

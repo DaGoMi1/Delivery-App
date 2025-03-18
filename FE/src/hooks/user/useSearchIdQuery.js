@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import api from "../../utils/api";
 
-const searchId = async({name, phone}) => {
-  return await api.post('/', {name,phone});
+const searchId = async(phone) => {
+  return await api.post('/member/find-id', {phone});
 }
 
 export const useSearchIdQuery = () => {

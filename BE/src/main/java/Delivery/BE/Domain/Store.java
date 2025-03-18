@@ -1,12 +1,11 @@
 package Delivery.BE.Domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -14,60 +13,58 @@ import java.sql.Timestamp;
 @Table(name = "store")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId; // store_id에 맞춘 필드 이름
+    private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
-    private String name;            // 가게 이름
+    @Column(name = "name", nullable = false, length = 100) // 가게 이름
+    private String name;
 
-    @Column(name = "owner_id", nullable = false)
-    private Long ownerId;           // owner_id (BIGINT 에 맞춤)
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false) // Member 와 연결
+    private Member member;
 
-    @Column(name = "description")
-    private String description;     // 가게 설명
+    @Column(name = "description") // 가게 설명
+    private String description;
 
-    @Column(name = "phone", length = 20)
-    private String phone;           // 전화번호
+    @Column(name = "phone", length = 20) // 가게 전화번호
+    private String phone;
 
-    @Column(name = "address")
-    private String address;         // 주소
+    @Column(name = "address") // 가게 주소
+    private String address;
 
-    @Column(name = "latitude")
-    private Double latitude;        // 위도
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status") // 가게 운영 상태 (OPEN, CLOSED, TEMPORARILY_CLOSED)
+    private Status status;
 
-    @Column(name = "longitude")
-    private Double longitude;       // 경도
+    @Column(name = "opening_hours", length = 50) // 가게 영업 시간
+    private String openingHours;
 
-    @Column(name = "status", columnDefinition = "ENUM('OPEN', 'CLOSED', 'TEMPORARILY_CLOSED') DEFAULT 'OPEN'")
-    private String status;          // 운영 상태 (OPEN, CLOSED, TEMPORARILY_CLOSED)
+    @Column(name = "logo_url") // 가게 로고 경로
+    private String logoUrl;
 
-    @Column(name = "opening_hours", length = 50)
-    private String openingHours;    // 영업 시간
+    @Column(name = "rating") // 가게 평점
+    private Double rating;
 
-    @Column(name = "logo_url")
-    private String logoUrl;         // 로고 URL
+    @Column(name = "created_at", updatable = false) // 가게 생성 시각
+    private Timestamp createdAt;
 
-    @Column(name = "category", length = 50)
-    private String category;        // 카테고리
+    @Column(name = "updated_at") // 가게 업데이트 시각
+    private Timestamp updatedAt;
 
-    @Column(name = "rating")
-    private Double rating;          // 평점 (5점 만점)
+    @ManyToMany
+    @JoinTable(
+            name = "store_category",   // 중간 테이블 이름
+            joinColumns = @JoinColumn(name = "store_id"),  // Menu 와의 관계
+            inverseJoinColumns = @JoinColumn(name = "category_id")  // Category 와의 관계
+    )
+    private Set<Category> categories = new HashSet<>();
 
-    @Column(name = "created_at", updatable = false)
-    private Timestamp createdAt;    // 생성 시간
-
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;    // 수정 시간
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = new Timestamp(System.currentTimeMillis());
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = new Timestamp(System.currentTimeMillis());
+    public enum Status {
+        OPEN,
+        CLOSED,
+        TEMPORARILY_CLOSED
     }
 }

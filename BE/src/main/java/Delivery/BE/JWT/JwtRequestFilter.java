@@ -26,9 +26,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         final String jwt = extractJwtFromRequest(request);
 
-        if (jwt != null) {
-            authenticateUser(jwt);
-        }
+        if (jwt != null) authenticateUser(jwt);
 
         filterChain.doFilter(request, response); // 다음 필터로 전달
     }
@@ -47,7 +45,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String userId = jwtUtil.extractUserId(jwt);
 
         if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            if (jwtUtil.validateToken(jwt, userId)) {
+            if (jwtUtil.validateToken(jwt)) {
                 setAuthentication(userId);
             }
         }

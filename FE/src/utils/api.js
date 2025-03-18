@@ -24,11 +24,12 @@ api.interceptors.response.use(
         if (!refreshToken) throw new Error("Refresh Token 없음");
 
         // Refresh Token으로 새 Access Token 요청
-        const res = await axios.post("https://localhost:8080/auth/refresh", {
+        const res = await axios.post("https://localhost:8080/auth/refresh-token", {
           refreshToken,
         });
 
         // 새 Access Token 저장
+        
         localStorage.setItem("accessToken", res.data.accessToken);
         error.config.headers.Authorization = `Bearer ${res.data.accessToken}`;
 

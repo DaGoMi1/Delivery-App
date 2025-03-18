@@ -17,33 +17,20 @@ import java.sql.Timestamp;
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderItemId;         // 주문 항목 ID
+    private Long id;
 
-    @Column(name = "order_id", nullable = false)
-    private Long orderId;             // 주문 ID (Order 테이블과 연결)
+    @Column(name = "quantity", nullable = false) // 주문 수량
+    private int quantity;
 
-    @Column(name = "menu_id", nullable = false)
-    private Long menuId;              // 메뉴 ID (Menu 테이블과 연결)
+    @Column(name = "order_id", nullable = false) // 주문과 연결
+    private Long orderId;
 
-    @Column(name = "quantity", nullable = false)
-    private Integer quantity;          // 수량
+    @Column(name = "menu_id", nullable = false) // 메뉴와 연결
+    private Long menuId;
 
-    @Column(name = "price", nullable = false)
-    private Double price;              // 가격
+    @Column(name = "created_at", updatable = false) // 주문 생성 시각
+    private Timestamp createdAt;
 
-    @Column(name = "created_at", updatable = false)
-    private Timestamp createdAt;       // 생성 시간
-
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;       // 수정 시간
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = new Timestamp(System.currentTimeMillis());
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = new Timestamp(System.currentTimeMillis());
-    }
+    @Column(name = "updated_at") // 주문 업데이트 시각
+    private Timestamp updatedAt;
 }

@@ -4,29 +4,30 @@ import LoadingSpinner from '../../common/loadingSpinner/LoadingSpinner';
 import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
 import {useSearchPasswordQuery} from '../../hooks/user/useSearchPasswordQuery';
 const SearchPasswordPage = () => {
+  const [phone, setPhone] = useState("");
   const [userId, setUserId] = useState("");
   const {mutate:serachPassword, data, isLoading, isError, error} = useSearchPasswordQuery();
 
   const submitSearchPassword = (e) => {
     e.preventDefault();
-    serachPassword({userId});  
+    serachPassword({phone,userId});  
   }
 
   if(isLoading) {
     return <LoadingSpinner/>
   }
 
-
   return (
     <div>
        <div className='text-center p-4'>
-        <h1 className='text-[36px] text-green-400'>배달의 부족</h1>
+        <h1 className='text-[36px] text-[var(--color-mainColor)]'>배달의 부족</h1>
         <p className='text-[18px]'>비밀번호 찾기</p>
       </div>
 
       <form className='p-4 flex flex-col gap-4'>
-        <input value={userId} onChange={(e)=>setUserId(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' placeholder='아이디' type="text" />
-        <button onClick={submitSearchPassword} type='submit' className='bg-green-400 text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!userId} >완료</button>
+        <input value={phone} onChange={(e)=>setPhone(e.target.value)} className='border-1 p-2 caret-[var(--color-mainColor)] focus:outline-[var(--color-mainColor)]' placeholder='전화번호' type="text" />
+        <input value={userId} onChange={(e)=>setUserId(e.target.value)} className='border-1 p-2 caret-[var(--color-mainColor)] focus:outline-[var(--color-mainColor)]' placeholder='아이디' type="text" />
+        <button onClick={submitSearchPassword} type='submit' className='bg-[var(--color-mainColor)] text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!userId} >완료</button>
       </form>
 
       {isError && <ErrorBoundary error={error}/>}

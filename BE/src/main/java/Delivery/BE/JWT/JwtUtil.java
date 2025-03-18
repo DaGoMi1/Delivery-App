@@ -1,5 +1,6 @@
 package Delivery.BE.JWT;
 
+import Delivery.BE.Exception.JwtAuthenticationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -23,19 +24,21 @@ public class JwtUtil {
     private long REFRESH_TOKEN_EXPIRATION_TIME;// 30일
 
     private SecretKey key;
+
     @PostConstruct
     public void init() {
         // SECRET_KEY 를 디코딩하여 key 로 초기화
         key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY));
     }
+
     // 엑세스 토큰 생성
     public String generateAccessToken(String username) {
-        return createToken(username, ACCESS_TOKEN_EXPIRATION_TIME);
+        return createToken(username, ACCESS_TOKEN_EXPIRATION_TIME * 1000);
     }
 
     // 리프레시 토큰 생성
     public String generateRefreshToken(String username) {
-        return createToken(username, REFRESH_TOKEN_EXPIRATION_TIME);
+        return createToken(username, REFRESH_TOKEN_EXPIRATION_TIME * 1000);
     }
 
     // 토큰 생성 메서드
@@ -58,14 +61,22 @@ public class JwtUtil {
         return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
     }
 
-    // 토큰 유효성 검사
-    public Boolean validateToken(String token, String userId) {
-        final String extractedUserId = extractUserId(token);
-        return (extractedUserId.equals(userId) && !isTokenExpired(token));
+    // 토큰 유효성 검사 (토큰 만료 여부만 체크)
+    public Boolean validateToken(String token) {
+        try {
+            Jwts.parser()
+                    .verifyWith(key) // 서명 검증 포함
+                    .build()
+                    .parseSignedClaims(token);
+            return true;
+        } catch (JwtAuthenticationException e) { // 서명 오류, 만료된 토큰 처리
+            return false;
+        }
     }
 
     // 토큰 만료 여부 확인
     private Boolean isTokenExpired(String token) {
         return extractAllClaims(token).getExpiration().before(new Date());
     }
+
 }

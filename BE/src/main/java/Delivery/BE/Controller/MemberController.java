@@ -1,10 +1,14 @@
 package Delivery.BE.Controller;
 
+import Delivery.BE.DTO.ChangePasswordDTO;
+import Delivery.BE.DTO.FindMemberDTO;
 import Delivery.BE.DTO.RegisterDTO;
+import Delivery.BE.Domain.Member;
+import Delivery.BE.Service.MemberService;
 import Delivery.BE.Service.RegisterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,16 +16,42 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
     private final RegisterService registerService;
+    private final MemberService memberService;
 
-    @PostMapping("/register")
+    @PostMapping("/register") // 회원가입
     public ResponseEntity<?> register(@RequestBody RegisterDTO registerDTO) {
-        try {
-            registerService.register(registerDTO); // 회원가입 서비스 로직 호출
-            return ResponseEntity.ok("회원가입 성공");
-        } catch (IllegalArgumentException e) { // 미리 정해진 예외
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (Exception e) { // 예상치 못한 예외
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류 발생");
-        }
+        registerService.register(registerDTO); // 회원가입 서비스 로직 호출
+        return ResponseEntity.ok("회원가입 성공");
+    }
+
+    @PostMapping("/find-id") // ID 찾기
+    public ResponseEntity<?> findID(@RequestBody FindMemberDTO findMemberDTO) {
+        memberService.findUserId(findMemberDTO);
+        return ResponseEntity.ok("이메일 전송 완료");
+    }
+
+    @PostMapping("/find-password") // 비밀번호 찾기
+    public ResponseEntity<?> findPassword(@RequestBody FindMemberDTO findMemberDTO) {
+        memberService.findPassword(findMemberDTO);
+        return ResponseEntity.ok("이메일 전송 완료");
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<?> info() {
+        Member member = memberService.getMemberInfo();
+        return ResponseEntity.ok(member);
+    }
+
+    @DeleteMapping("/withdraw") // Member 탈퇴 요청
+    public ResponseEntity<?> withdraw() {
+        String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        memberService.withdrawMember(userId);
+        return ResponseEntity.ok("회원 탈퇴 완료");
+    }
+
+    @PatchMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
+        memberService.changePassword(changePasswordDTO);
+        return ResponseEntity.ok("비밀번호 변경 완료");
     }
 }

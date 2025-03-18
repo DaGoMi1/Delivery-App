@@ -5,14 +5,13 @@ import LoadingSpinner from '../../common/loadingSpinner/LoadingSpinner';
 import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
 
 const SearchIdPage = () => {
-  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
   const {mutate: searchId, data, isLoading, isError, error} = useSearchIdQuery();
 
   const submitSearchId = (e) => {
     e.preventDefault();
-    searchId({name,phone});
+    searchId(phone);
   }
 
   if(isLoading) {
@@ -22,13 +21,12 @@ const SearchIdPage = () => {
   return (
     <div>
       <div className='text-center p-4'>
-        <h1 className='text-[36px] text-green-400'>배달의 부족</h1>
+        <h1 className='text-[36px] text-[var(--color-mainColor)]'>배달의 부족</h1>
         <p className='text-[18px]'>아이디 찾기</p>
       </div>
       <form className='p-4 flex flex-col gap-4'>
-        <input value={name} onChange={(e)=>setName(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' placeholder='이름' type="text" />
-        <input value={phone} onChange={(e)=>setPhone(e.target.value)} className='border-1 p-2 caret-green-600 focus:outline-green-600' placeholder='전화번호' type="text" />
-        <button onClick={submitSearchId} type='submit' className='bg-green-400 text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!name || !phone}>완료</button>
+        <input value={phone} onChange={(e)=>setPhone(e.target.value)} className='border-1 p-2 caret-[var(--color-mainColor)] focus:outline-[var(--color-mainColor)]' placeholder='전화번호' type="text" />
+        <button onClick={submitSearchId} type='submit' className='bg-[var(--color-mainColor)] text-white border-1 p-2 cursor-pointer disabled:bg-gray-400' disabled={!name || !phone}>완료</button>
       </form>
 
       {isError && <ErrorBoundary error={error}/>}
