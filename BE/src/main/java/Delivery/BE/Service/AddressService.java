@@ -3,8 +3,8 @@ package Delivery.BE.Service;
 import Delivery.BE.DTO.AddressDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Domain.MemberAddress;
-import Delivery.BE.Exception.AddressNotFoundException;
 import Delivery.BE.Exception.MissingRequiredDataException;
+import Delivery.BE.Exception.NotFoundException;
 import Delivery.BE.Repository.AddressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -55,7 +55,7 @@ public class AddressService {
         }
 
         MemberAddress memberAddress = addressRepository.findById(id)
-                .orElseThrow(() -> new AddressNotFoundException("해당 ID의 주소를 찾을 수 없습니다."));
+                .orElseThrow(() -> new NotFoundException("주소를 찾을 수 없습니다. ID: " + id));
 
         memberAddress.setDetailAddress(detailAddress);
         addressRepository.save(memberAddress);
@@ -80,7 +80,7 @@ public class AddressService {
         Long id = addressDTO.getId();
 
         addressRepository.findById(id)
-                .orElseThrow(() -> new AddressNotFoundException("해당 ID의 주소를 찾을 수 없습니다."));
+                .orElseThrow(() -> new NotFoundException("주소를 찾을 수 없습니다. ID: " + id));
 
         addressRepository.deleteById(id);
     }
@@ -97,7 +97,7 @@ public class AddressService {
 
         // 요청한 id의 주소만 main 값을 true 로 설정
         MemberAddress mainAddress = addressRepository.findById(id)
-                .orElseThrow(() -> new AddressNotFoundException("해당 ID의 주소를 찾을 수 없습니다."));
+                .orElseThrow(() -> new NotFoundException("주소를 찾을 수 없습니다. ID: " + id));
         mainAddress.setMain(true);
 
         // 저장
