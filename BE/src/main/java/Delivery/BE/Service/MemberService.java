@@ -46,18 +46,14 @@ public class MemberService {
             throw new JwtAuthenticationException("유효하지 않은 인증 정보입니다.");
         }
 
-        Member member = findMemberByUserId(userId);
-        if (member == null) {
-            throw new UserNotFoundException("회원 정보를 찾을 수 없습니다.");
-        }
-
-        return member;
+        return findMemberByUserId(userId);
     }
 
     public void findUserId(FindMemberDTO findMemberDTO) {
+        String phone = findMemberDTO.getPhone();
         // 휴대폰 번호로 회원 조회
-        Member member = memberRepository.findByPhone(findMemberDTO.getPhone())
-                .orElseThrow(() -> new UserNotFoundException("입력한 폰 번호로 등록된 계정이 없습니다."));
+        Member member = memberRepository.findByPhone(phone)
+                .orElseThrow(() -> new NotFoundException("사용자를 찾을 수 없습니다. phone: " + phone));
 
         // Email 형식 만들기
         EmailFormDTO emailFormDTO = new EmailFormDTO();
@@ -72,8 +68,8 @@ public class MemberService {
 
     @Transactional(rollbackFor = Exception.class)
     public void findPassword(FindMemberDTO findMemberDTO) {
-        Member member = memberRepository.findByUserId(findMemberDTO.getUserId())
-                .orElseThrow(() -> new UserNotFoundException("존재하지 않는 ID 입니다."));
+        String userId = findMemberDTO.getUserId();
+        Member member = findMemberByUserId(userId);
 
         if (!member.getPhone().equals(findMemberDTO.getPhone())) {
             throw new InformationNotMatchException("ID와 휴대폰 번호가 일치하지 않습니다.");
@@ -147,13 +143,12 @@ public class MemberService {
 
     public Member findMemberByUserId(String userId) {
         return memberRepository.findByUserId(userId)
-                .orElseThrow(()-> new UserNotFoundException("해당 사용자를 찾을 수 없습니다."));
+                .orElseThrow(()-> new NotFoundException("사용자를 찾을 수 없습니다. userId: " + userId));
     }
 
     @Transactional
     public void withdrawMember(String userId) {
-        Member member = memberRepository.findByUserId(userId)
-                .orElseThrow(()-> new UserNotFoundException("해당 사용자를 찾을 수 없습니다."));
+        Member member = findMemberByUserId(userId);
 
         memberRepository.delete(member);
     }

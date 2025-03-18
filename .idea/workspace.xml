@@ -4,19 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/12 작업 내용 (추가)&#10;Address - 대표 주소에 대한 값을 저장할 isMain 추가, 대표 주소로 설정 가능한 API(/set-main) 추가, 주소 추가 요청시 각 Member가 처음 생성하는 주소라면 isMain값 true">
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/StoreController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/StoreDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" afterDir="false" />
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/17 작업 내용&#10;예외 처리 - DTO에서 NotBlank 설정 후 컨트롤러에서 Valid &#10;&#10;Store - 가게 추가 API 구현">
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/UpdateStoreDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Exception/NotFoundException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/BE/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/AddressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/StoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/CreateStoreDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/StoreCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Exception/AddressNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Exception/UserNotFoundException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/JWT/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/JWT/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +176,8 @@
       <workItem from="1741843392810" duration="1620000" />
       <workItem from="1741934336256" duration="1680000" />
       <workItem from="1742017276616" duration="3689000" />
-      <workItem from="1742210565965" duration="5100000" />
+      <workItem from="1742210565965" duration="6935000" />
+      <workItem from="1742294980055" duration="6399000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -263,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741769556430</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="3/17 작업 내용&#10;예외 처리 - DTO에서 NotBlank 설정 후 컨트롤러에서 Valid &#10;&#10;Store - 가게 추가 API 구현">
+      <option name="closed" value="true" />
+      <created>1742217103513</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1742217103513</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +292,8 @@
     <MESSAGE value="3/9 작업 내용&#10;JWT - 인증 방식 수정&#10;&#10;GetMember - Member 정보 요청 코드 수정" />
     <MESSAGE value="3/12 작업 내용&#10;Address - Member의 주소 관련 기능 구현 (추가, 수정, 삭제, 조회)&#10;&#10;ChangePassword - 비밀번호 변경 기능 구현&#10;&#10;예외 - 위 기능 구현시 필요한 예외 클래스 추가" />
     <MESSAGE value="3/12 작업 내용 (추가)&#10;Address - 대표 주소에 대한 값을 저장할 isMain 추가, 대표 주소로 설정 가능한 API(/set-main) 추가, 주소 추가 요청시 각 Member가 처음 생성하는 주소라면 isMain값 true" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/12 작업 내용 (추가)&#10;Address - 대표 주소에 대한 값을 저장할 isMain 추가, 대표 주소로 설정 가능한 API(/set-main) 추가, 주소 추가 요청시 각 Member가 처음 생성하는 주소라면 isMain값 true" />
+    <MESSAGE value="3/17 작업 내용&#10;예외 처리 - DTO에서 NotBlank 설정 후 컨트롤러에서 Valid &#10;&#10;Store - 가게 추가 API 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/17 작업 내용&#10;예외 처리 - DTO에서 NotBlank 설정 후 컨트롤러에서 Valid &#10;&#10;Store - 가게 추가 API 구현" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

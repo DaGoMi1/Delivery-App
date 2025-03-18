@@ -11,11 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class) // 사용자를 찾을 수 없을 때
-    public ResponseEntity<?> handleUserNotFound(UserNotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }
-
     @ExceptionHandler(UnauthorizedRoleException.class) // 사용자의 권한이 올바르지 않을 때
     public ResponseEntity<?> handleUnauthorizedRole(UnauthorizedRoleException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
@@ -56,14 +51,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
-    @ExceptionHandler(AddressNotFoundException.class) // id로 주소를 찾을 수 없을 때
-    public ResponseEntity<?> handleAddressNotFound(AddressNotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class) // DTO 검증 실패 했을 때
     public ResponseEntity<?> handleValidationExceptions(MethodArgumentNotValidException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
+    @ExceptionHandler(NotFoundException.class) // 객체를 찾을 수 없을 때
+    public ResponseEntity<?> handleNotFoundException(NotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
     @ExceptionHandler(Exception.class) // 예상하지 못한 오류가 발생했을 때 (기타 모든 예외 처리)

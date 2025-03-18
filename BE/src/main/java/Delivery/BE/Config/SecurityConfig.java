@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
@@ -30,6 +30,7 @@ public class SecurityConfig {
                         .requestMatchers("/member/register", "/member/find-id", "/member/find-password"
                                 ,"/auth/**").permitAll()
                         .requestMatchers("/role/**").hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
+                        .requestMatchers("/store/**").hasAnyRole( "OWNER", "ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -52,7 +53,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 // JWT 필터 추가
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterAfter(jwtRequestFilter, BasicAuthenticationFilter.class);
         return http.build();
     }
 
