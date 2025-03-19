@@ -1,10 +1,7 @@
 package Delivery.BE.Domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -12,6 +9,7 @@ import lombok.Setter;
 @Table(name = "member_address")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class MemberAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -53,14 +51,6 @@ public class Store {
 
     @Column(name = "updated_at") // 가게 업데이트 시각
     private Timestamp updatedAt;
-
-    @ManyToMany
-    @JoinTable(
-            name = "store_category",   // 중간 테이블 이름
-            joinColumns = @JoinColumn(name = "store_id"),  // Menu 와의 관계
-            inverseJoinColumns = @JoinColumn(name = "category_id")  // Category 와의 관계
-    )
-    private Set<Category> categories = new HashSet<>();
 
     public enum Status {
         OPEN,

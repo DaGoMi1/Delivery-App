@@ -28,7 +28,4 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")  // Menu 엔티티와의 관계
     private Set<Menu> menus = new HashSet<>();
-
-    @ManyToMany(mappedBy = "categories")  // Store 엔티티와의 관계
-    private Set<Store> stores = new HashSet<>();
 }

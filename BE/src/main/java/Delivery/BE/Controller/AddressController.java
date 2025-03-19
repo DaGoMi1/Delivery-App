@@ -1,9 +1,9 @@
 package Delivery.BE.Controller;
 
-import Delivery.BE.DTO.AddressDTO;
-import Delivery.BE.Domain.Member;
+import Delivery.BE.DTO.CreateAddressDTO;
+import Delivery.BE.DTO.UpdateAddressDTO;
 import Delivery.BE.Service.AddressService;
-import Delivery.BE.Service.MemberService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,38 +12,34 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/address")
 @RequiredArgsConstructor
 public class AddressController {
-    private final MemberService memberService;
     private final AddressService addressService;
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addAddress(@RequestBody AddressDTO addressDTO) {
-        Member member = memberService.getMemberInfo();
-        addressService.addAddress(addressDTO, member);
+    @PostMapping("")
+    public ResponseEntity<?> addAddress(@Valid @RequestBody CreateAddressDTO createAddressDTO) {
+        addressService.addAddress(createAddressDTO);
         return ResponseEntity.ok("Member 주소 추가 완료");
     }
 
-    @GetMapping("/list")
+    @GetMapping("")
     public ResponseEntity<?> getAddressList() {
-        Member member = memberService.getMemberInfo();
-        return ResponseEntity.ok(addressService.getAddressList(member));
+        return ResponseEntity.ok(addressService.getAddressList());
     }
 
-    @PatchMapping("/update")
-    public ResponseEntity<?> updateAddress(@RequestBody AddressDTO addressDTO) {
-        addressService.updateAddress(addressDTO);
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateAddress(@PathVariable Long id, @Valid @RequestBody UpdateAddressDTO updateAddressDTO) {
+        addressService.updateAddress(id, updateAddressDTO);
         return ResponseEntity.ok("상세 주소 수정 완료");
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteAddress(@RequestBody AddressDTO addressDTO) {
-        addressService.deleteAddress(addressDTO);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAddress(@PathVariable Long id) {
+        addressService.deleteAddress(id);
         return ResponseEntity.ok("Member의 주소 삭제 완료");
     }
 
-    @PatchMapping("/main")
-    public ResponseEntity<?> setMain(@RequestBody AddressDTO addressDTO) {
-        Member member = memberService.getMemberInfo();
-        addressService.setMainAddress(addressDTO, member);
+    @PatchMapping("/main/{id}")
+    public ResponseEntity<?> setMain(@PathVariable Long id) {
+        addressService.setMainAddress(id);
         return ResponseEntity.ok("대표 주소 설정 완료");
     }
 }

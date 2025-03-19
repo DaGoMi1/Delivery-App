@@ -6,7 +6,6 @@ import Delivery.BE.Exception.InvalidOwnerCodeException;
 import Delivery.BE.Exception.UnauthorizedRoleException;
 import Delivery.BE.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +17,7 @@ public class RoleService {
 
     private static final String OWNER_CODE = "사업자 등록증 032";
 
-    public void upgradeToOwner(RoleUpgradeDTO roleUpgradeDTO) {
-        Member member = memberRepository.findByUserId(roleUpgradeDTO.getUserId())
-                .orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 사용자입니다."));
-
+    public void upgradeToOwner(Member member, RoleUpgradeDTO roleUpgradeDTO) {
         Member.Role role = member.getRole(); // 사용자의 권한 가져오기
 
         if (!role.equals(Member.Role.CUSTOMER)) { // 일반 사용자가 아니라면 (OWNER, ADMIN)
