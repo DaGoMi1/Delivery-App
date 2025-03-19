@@ -147,9 +147,8 @@ public class MemberService {
     }
 
     @Transactional
-    public void withdrawMember(String userId) {
-        Member member = findMemberByUserId(userId);
-
+    public void withdrawMember() {
+        Member member = getMemberInfo();
         memberRepository.delete(member);
     }
 

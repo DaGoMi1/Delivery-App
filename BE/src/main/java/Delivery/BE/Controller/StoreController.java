@@ -24,9 +24,15 @@ public class StoreController {
         return ResponseEntity.ok("가게 생성 완료");
     }
 
-    @PatchMapping("")
-    public ResponseEntity<?> updateStore(@Valid @RequestBody UpdateStoreDTO updateStoreDTO) {
-        storeService.updateStore(updateStoreDTO);
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateStore(@PathVariable Long id, @RequestBody UpdateStoreDTO updateStoreDTO) {
+        storeService.updateStore(id, updateStoreDTO);
         return ResponseEntity.ok("가게 수정 완료");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteStore(@PathVariable Long id) {
+        storeService.deleteStore(id);
+        return ResponseEntity.ok("가게 삭제 완료");
     }
 }

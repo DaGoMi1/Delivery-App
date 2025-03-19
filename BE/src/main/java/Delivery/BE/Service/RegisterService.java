@@ -23,6 +23,7 @@ public class RegisterService {
 
         validateUserId(registerDTO); // userId 유효성 검사
         validateEmail(registerDTO); // email 유효성 검사
+        validatePhone(registerDTO); // phone 유효성 검사
         validatePasswordsMatch(registerDTO); // 비밀번호 일치 검사
 
         Member member = Member.builder()
@@ -46,6 +47,12 @@ public class RegisterService {
     private void validateEmail(RegisterDTO registerDTO) {
         if (memberRepository.findByEmail(registerDTO.getEmail()).isPresent()) {// email이 이미 DB에 저장되어 있다면
             throw new AlreadyRegisteredException("이미 가입한 이메일입니다.");
+        }
+    }
+
+    private void validatePhone(RegisterDTO registerDTO) {
+        if (memberRepository.findByPhone(registerDTO.getPhone()).isPresent()) {// phone이 이미 DB에 저장되어 있다면
+            throw new AlreadyRegisteredException("이미 가입한 휴대폰 번호입니다.");
         }
     }
 

@@ -6,21 +6,19 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "menu_category")
+@Table(name = "option_group")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MenuCategory {
+public class OptionGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "menu_id") // Menu 와 연결
+    @JoinColumn(name = "menu_id", nullable = false)
     private Menu menu;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id") // Category 와 연결
-    private Category category;
-
+    @Column(name = "name", nullable = false)
+    private String name;
 }
