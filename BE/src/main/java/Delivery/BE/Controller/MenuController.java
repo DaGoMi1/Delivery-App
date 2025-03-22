@@ -2,7 +2,7 @@ package Delivery.BE.Controller;
 
 import Delivery.BE.DTO.CreateMenuDTO;
 import Delivery.BE.DTO.MenuCategoryDTO;
-import Delivery.BE.Service.MenuCategoryService;
+import Delivery.BE.Service.CategoryRelationService;
 import Delivery.BE.Service.MenuService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MenuController {
     private final MenuService menuService;
-    private final MenuCategoryService menuCategoryService;
+    private final CategoryRelationService categoryRelationService;
 
     @PostMapping("")
     public ResponseEntity<?> createMenu(@Valid @RequestBody CreateMenuDTO createMenuDTO) {
@@ -24,7 +24,7 @@ public class MenuController {
 
     @PostMapping("/category")
     public ResponseEntity<?> menuCategory(@Valid @RequestBody MenuCategoryDTO menuCategoryDTO) {
-        menuCategoryService.addCategoryInMenu(menuCategoryDTO);
+        categoryRelationService.addCategoryInMenu(menuCategoryDTO);
         return ResponseEntity.ok("메뉴에 카테고리 추가 완료");
     }
 

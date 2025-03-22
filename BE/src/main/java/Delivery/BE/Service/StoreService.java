@@ -1,7 +1,9 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateStoreDTO;
+import Delivery.BE.DTO.ResponseStoreDTO;
 import Delivery.BE.DTO.UpdateStoreDTO;
+import Delivery.BE.Domain.Category;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Domain.Store;
 import Delivery.BE.Exception.ForbiddenException;
@@ -11,7 +13,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -42,13 +47,13 @@ public class StoreService {
 
         checkStoreOwner(store);
 
-        if(updateStoreDTO.getName() != null) store.setName(updateStoreDTO.getName());
-        if(updateStoreDTO.getAddress() != null) store.setAddress(updateStoreDTO.getAddress());
-        if(updateStoreDTO.getPhone() != null) store.setPhone(updateStoreDTO.getPhone());
-        if(updateStoreDTO.getDescription() != null) store.setDescription(updateStoreDTO.getDescription());
-        if(updateStoreDTO.getOpeningHours() != null) store.setOpeningHours(updateStoreDTO.getOpeningHours());
-        if(updateStoreDTO.getStatus() != null) store.setStatus(updateStoreDTO.getStatus());
-        if(updateStoreDTO.getLogoUrl() != null) store.setLogoUrl(updateStoreDTO.getLogoUrl());
+        if (updateStoreDTO.getName() != null) store.setName(updateStoreDTO.getName());
+        if (updateStoreDTO.getAddress() != null) store.setAddress(updateStoreDTO.getAddress());
+        if (updateStoreDTO.getPhone() != null) store.setPhone(updateStoreDTO.getPhone());
+        if (updateStoreDTO.getDescription() != null) store.setDescription(updateStoreDTO.getDescription());
+        if (updateStoreDTO.getOpeningHours() != null) store.setOpeningHours(updateStoreDTO.getOpeningHours());
+        if (updateStoreDTO.getStatus() != null) store.setStatus(updateStoreDTO.getStatus());
+        if (updateStoreDTO.getLogoUrl() != null) store.setLogoUrl(updateStoreDTO.getLogoUrl());
 
         storeRepository.save(store);
     }
@@ -58,6 +63,28 @@ public class StoreService {
         Store store = findStoreById(id);
         checkStoreOwner(store);
         storeRepository.deleteById(id);
+    }
+
+    public List<ResponseStoreDTO> getStoresByCategory(Long categoryId) {
+        List<Store> storeList = storeRepository.findStoresByCategoryId(categoryId);
+
+        return storeList.stream()
+                .map(store -> new ResponseStoreDTO(
+                        store.getId(),
+                        store.getName(),
+                        store.getMember(),
+                        store.getDescription(),
+                        store.getPhone(),
+                        store.getAddress(),
+                        store.getStatus(),
+                        store.getOpeningHours(),
+                        store.getLogoUrl(),
+                        store.getRating(),
+                        store.getCategories(),
+                        store.getCreatedAt(),
+                        store.getUpdatedAt()
+                ))
+                .collect(Collectors.toList());
     }
 
     public Store findStoreById(Long id) {

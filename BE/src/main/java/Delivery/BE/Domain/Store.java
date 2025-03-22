@@ -2,8 +2,11 @@ package Delivery.BE.Domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -46,10 +49,20 @@ public class Store {
     @Column(name = "rating") // 가게 평점
     private Double rating;
 
+    @ManyToMany
+    @JoinTable(
+            name = "store_category",   // 중간 테이블 이름
+            joinColumns = @JoinColumn(name = "store_id"),  // Store 와의 관계
+            inverseJoinColumns = @JoinColumn(name = "category_id")  // Category 와의 관계
+    )
+    private Set<Category> categories;
+
     @Column(name = "created_at", updatable = false) // 가게 생성 시각
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Column(name = "updated_at") // 가게 업데이트 시각
+    @UpdateTimestamp
     private Timestamp updatedAt;
 
     public enum Status {

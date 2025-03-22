@@ -44,5 +44,5 @@ public class Menu {
             joinColumns = @JoinColumn(name = "menu_id"),  // Menu 와의 관계
             inverseJoinColumns = @JoinColumn(name = "category_id")  // Category 와의 관계
     )
-    private Set<Category> categories = new HashSet<>();
+    private Set<Category> categories;
 }
