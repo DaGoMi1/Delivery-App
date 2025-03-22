@@ -8,7 +8,6 @@ import Delivery.BE.Service.MemberService;
 import Delivery.BE.Service.RegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,36 +19,35 @@ public class MemberController {
 
     @PostMapping("/register") // 회원가입
     public ResponseEntity<?> register(@RequestBody RegisterDTO registerDTO) {
-        registerService.register(registerDTO); // 회원가입 서비스 로직 호출
+        registerService.register(registerDTO);
         return ResponseEntity.ok("회원가입 성공");
     }
 
-    @PostMapping("/find-id") // ID 찾기
+    @PostMapping("/id") // ID 찾기
     public ResponseEntity<?> findID(@RequestBody FindMemberDTO findMemberDTO) {
         memberService.findUserId(findMemberDTO);
         return ResponseEntity.ok("이메일 전송 완료");
     }
 
-    @PostMapping("/find-password") // 비밀번호 찾기
+    @PostMapping("/password") // 비밀번호 찾기
     public ResponseEntity<?> findPassword(@RequestBody FindMemberDTO findMemberDTO) {
         memberService.findPassword(findMemberDTO);
         return ResponseEntity.ok("이메일 전송 완료");
     }
 
-    @GetMapping("/info")
+    @GetMapping("")
     public ResponseEntity<?> info() {
         Member member = memberService.getMemberInfo();
         return ResponseEntity.ok(member);
     }
 
-    @DeleteMapping("/withdraw") // Member 탈퇴 요청
+    @DeleteMapping("") // Member 탈퇴 요청
     public ResponseEntity<?> withdraw() {
-        String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        memberService.withdrawMember(userId);
+        memberService.withdrawMember();
         return ResponseEntity.ok("회원 탈퇴 완료");
     }
 
-    @PatchMapping("/change-password")
+    @PatchMapping("/password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
         memberService.changePassword(changePasswordDTO);
         return ResponseEntity.ok("비밀번호 변경 완료");

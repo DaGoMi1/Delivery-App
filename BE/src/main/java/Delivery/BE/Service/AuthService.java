@@ -1,7 +1,7 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.AccessTokenResponseDTO;
-import Delivery.BE.DTO.JwtResponseDTO;
+import Delivery.BE.DTO.ResponseJwtDTO;
 import Delivery.BE.DTO.LoginDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Exception.InformationNotMatchException;
@@ -18,12 +18,12 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class TokenService {
+public class AuthService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final MemberRepository memberRepository;
     private final JwtUtil jwtUtil;
 
-    public JwtResponseDTO login(LoginDTO loginDTO) {
+    public ResponseJwtDTO login(LoginDTO loginDTO) {
         Optional<Member> optionalMember = memberRepository.findByUserId(loginDTO.getUserId());
 
         if (optionalMember.isPresent() && bCryptPasswordEncoder.matches(loginDTO.getPassword(), optionalMember.get().getPassword())) {
@@ -50,14 +50,14 @@ public class TokenService {
         return accessTokenResponseDTO;
     }
 
-    private JwtResponseDTO generateJwtResponse(String userId) {
+    private ResponseJwtDTO generateJwtResponse(String userId) {
         String accessToken = jwtUtil.generateAccessToken(userId); // ID로 Access 토큰 발행
         String refreshToken = jwtUtil.generateRefreshToken(userId); // ID로 Refresh 토큰 발행
 
-        JwtResponseDTO jwtResponseDTO = new JwtResponseDTO();
-        jwtResponseDTO.setAccessToken(accessToken);
-        jwtResponseDTO.setRefreshToken(refreshToken);
-        return jwtResponseDTO;
+        ResponseJwtDTO responseJwtDTO = new ResponseJwtDTO();
+        responseJwtDTO.setAccessToken(accessToken);
+        responseJwtDTO.setRefreshToken(refreshToken);
+        return responseJwtDTO;
     }
 
 }

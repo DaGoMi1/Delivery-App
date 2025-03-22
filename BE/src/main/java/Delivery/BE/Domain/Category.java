@@ -27,8 +27,8 @@ public class Category {
     private String imageUrl;
 
     @ManyToMany(mappedBy = "categories")  // Menu 엔티티와의 관계
-    private Set<Menu> menus = new HashSet<>();
+    private Set<Store> stores;
 
-    @ManyToMany(mappedBy = "categories")  // Store 엔티티와의 관계
-    private Set<Store> stores = new HashSet<>();
+    @ManyToMany(mappedBy = "categories")  // Menu 엔티티와의 관계
+    private Set<Menu> menus;
 }
