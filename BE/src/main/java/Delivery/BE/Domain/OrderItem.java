@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
@@ -29,8 +31,10 @@ public class OrderItem {
     private Long menuId;
 
     @Column(name = "created_at", updatable = false) // 주문 생성 시각
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Column(name = "updated_at") // 주문 업데이트 시각
+    @UpdateTimestamp
     private Timestamp updatedAt;
 }

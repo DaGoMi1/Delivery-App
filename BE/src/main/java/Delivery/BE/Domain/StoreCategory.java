@@ -6,11 +6,11 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "menu_category")
+@Table(name = "store_category")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MenuCategory {
+public class StoreCategory {
     @EmbeddedId
-    private MenuCategoryId menuCategoryId;
+    private StoreCategoryId storeCategoryId;
 }

@@ -1,6 +1,7 @@
 package Delivery.BE.Controller;
 
 import Delivery.BE.DTO.CreateStoreDTO;
+import Delivery.BE.DTO.ResponseStoreDTO;
 import Delivery.BE.DTO.UpdateStoreDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Service.MemberService;
@@ -9,6 +10,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/store")
@@ -34,5 +37,11 @@ public class StoreController {
     public ResponseEntity<?> deleteStore(@PathVariable Long id) {
         storeService.deleteStore(id);
         return ResponseEntity.ok("가게 삭제 완료");
+    }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<?> getStoreListByCategory(@PathVariable Long id) {
+        List<ResponseStoreDTO> list = storeService.getStoresByCategory(id);
+        return ResponseEntity.ok(list);
     }
 }
