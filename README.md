@@ -33,7 +33,8 @@
 
 ERD 변경 과정\
 [ERD](https://drive.google.com/file/d/1NwxAfwWm77QdKvtVt4K1UndHKuJ1FdgL/view?usp=sharing)\
-[ERD 1차 변경](https://drive.google.com/file/d/1xJN1zos4hOb2IoZAH681U0JbehwFDfNI/view?usp=sharing)
+[ERD 1차 변경](https://drive.google.com/file/d/1xJN1zos4hOb2IoZAH681U0JbehwFDfNI/view?usp=sharing)\
+[ERD 2차 변경](https://drive.google.com/file/d/1uE4hROb0lU1AZjo-qNGRsaL5nsAWcUHs/view?usp=sharing)
 
 
 ---
