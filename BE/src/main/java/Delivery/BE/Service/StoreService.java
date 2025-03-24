@@ -3,7 +3,6 @@ package Delivery.BE.Service;
 import Delivery.BE.DTO.CreateStoreDTO;
 import Delivery.BE.DTO.ResponseStoreDTO;
 import Delivery.BE.DTO.UpdateStoreDTO;
-import Delivery.BE.Domain.Category;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Domain.Store;
 import Delivery.BE.Exception.ForbiddenException;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service

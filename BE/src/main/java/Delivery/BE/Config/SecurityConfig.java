@@ -28,10 +28,18 @@ public class SecurityConfig {
                 // 권한 설정
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/member/register", "/member/id", "/member/password"
-                                ,"/auth/**").permitAll()
-                        .requestMatchers("/role/**", "/address/**").hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
-                        .requestMatchers("/store/**").hasAnyRole( "OWNER", "ADMIN")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                , "/auth/**")
+                        .permitAll()
+
+                        .requestMatchers("/role/**", "/address/**")
+                        .hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
+
+                        .requestMatchers("/store/**", "/menu/**", "/option-group/**", "/option/**")
+                        .hasAnyRole("OWNER", "ADMIN")
+
+                        .requestMatchers("/admin/**")
+                        .hasRole("ADMIN")
+
                         .anyRequest().authenticated()
                 )
 
