@@ -3,7 +3,6 @@ package Delivery.BE.Domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -36,7 +35,7 @@ public class Menu {
     private String imageUrl;            // 메뉴 이미지 경로
 
     @Column(name = "is_available", nullable = false)
-    private Boolean isAvailable;        // 메뉴 이용 가능 여부
+    private boolean isAvailable;        // 메뉴 이용 가능 여부
 
     @ManyToMany
     @JoinTable(

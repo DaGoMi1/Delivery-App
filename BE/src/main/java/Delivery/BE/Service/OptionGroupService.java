@@ -1,6 +1,7 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateOptionGroupDTO;
+import Delivery.BE.DTO.UpdateOptionGroupDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Domain.Menu;
 import Delivery.BE.Domain.OptionGroup;
@@ -33,9 +34,27 @@ public class OptionGroupService {
         optionGroupRepository.save(optionGroup);
     }
 
+    @Transactional
+    public void updateOptionGroup(Long id, UpdateOptionGroupDTO updateOptionGroupDTO) {
+        OptionGroup optionGroup = findOptionGroupById(id);
+
+        checkOptionGroupOwner(optionGroup);
+
+        if (updateOptionGroupDTO.getName() != null) optionGroup.setName(updateOptionGroupDTO.getName());
+
+        optionGroupRepository.save(optionGroup);
+    }
+
+    @Transactional
+    public void deleteOptionGroup(Long id) {
+        OptionGroup optionGroup = findOptionGroupById(id);
+        checkOptionGroupOwner(optionGroup);
+        optionGroupRepository.delete(optionGroup);
+    }
+
     public OptionGroup findOptionGroupById(Long id) {
         return optionGroupRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("옵션 그룹을 찾을 수 없습니다. id=" + id));
+                .orElseThrow(() -> new NotFoundException("옵션 그룹을 찾을 수 없습니다. ID: " + id));
     }
 
     public void checkOptionGroupOwner(OptionGroup optionGroup) { // 요청한 옵션 그룹에 대한 정보가 소유자가 맞는지 확인

@@ -1,10 +1,10 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateMenuDTO;
+import Delivery.BE.DTO.UpdateMenuDTO;
 import Delivery.BE.Domain.*;
 import Delivery.BE.Exception.ForbiddenException;
 import Delivery.BE.Exception.NotFoundException;
-import Delivery.BE.Repository.CategoryRepository;
 import Delivery.BE.Repository.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,6 +34,28 @@ public class MenuService {
                 .build();
 
         menuRepository.save(menu);
+    }
+
+    @Transactional
+    public void updateMenu(Long id, UpdateMenuDTO updateMenuDTO) {
+        Menu menu = findMenuById(id);
+
+        checkMenuOwner(menu);
+
+        if (updateMenuDTO.getName() != null) menu.setName(updateMenuDTO.getName());
+        if (updateMenuDTO.getDescription() != null) menu.setDescription(updateMenuDTO.getDescription());
+        if(updateMenuDTO.getPrice() != null) menu.setPrice(updateMenuDTO.getPrice());
+        if(updateMenuDTO.getImageUrl() != null) menu.setImageUrl(updateMenuDTO.getImageUrl());
+        if (updateMenuDTO.getIsAvailable() != null) menu.setAvailable(updateMenuDTO.getIsAvailable());
+
+        menuRepository.save(menu);
+    }
+
+    @Transactional
+    public void deleteMenu(Long id) {
+        Menu menu = findMenuById(id);
+        checkMenuOwner(menu);
+        menuRepository.delete(menu);
     }
 
     public Menu findMenuById(Long id) {

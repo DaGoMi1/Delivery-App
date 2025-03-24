@@ -2,6 +2,7 @@ package Delivery.BE.Controller;
 
 import Delivery.BE.DTO.CreateMenuDTO;
 import Delivery.BE.DTO.MenuCategoryDTO;
+import Delivery.BE.DTO.UpdateMenuDTO;
 import Delivery.BE.Service.CategoryRelationService;
 import Delivery.BE.Service.MenuService;
 import jakarta.validation.Valid;
@@ -28,5 +29,15 @@ public class MenuController {
         return ResponseEntity.ok("메뉴에 카테고리 추가 완료");
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateMenu(@PathVariable Long id, @RequestBody UpdateMenuDTO updateMenuDTO) {
+        menuService.updateMenu(id, updateMenuDTO);
+        return ResponseEntity.ok("메뉴 수정 완료");
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMenu(@PathVariable Long id) {
+        menuService.deleteMenu(id);
+        return ResponseEntity.ok("메뉴 삭제 완료");
+    }
 }

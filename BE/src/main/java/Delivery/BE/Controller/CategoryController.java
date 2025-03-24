@@ -17,6 +17,4 @@ public class CategoryController {
     public ResponseEntity<?> getCategory() {
         return ResponseEntity.ok(categoryService.findAll());
     }
-
-
 }
