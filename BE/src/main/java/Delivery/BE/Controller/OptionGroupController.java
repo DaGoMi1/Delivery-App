@@ -23,7 +23,7 @@ public class OptionGroupController {
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateOptionGroup(@PathVariable Long id, @RequestBody UpdateOptionGroupDTO updateOptionGroupDTO) {
         optionGroupService.updateOptionGroup(id, updateOptionGroupDTO);
-        return ResponseEntity.ok("옵션 수정 완료");
+        return ResponseEntity.ok("옵션 그룹 수정 완료");
     }
 
     @DeleteMapping("/{id}")

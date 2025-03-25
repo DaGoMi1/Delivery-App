@@ -1068,7 +1068,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="delivery">
-      <LastIntrospectionLocalTimestamp>2025-03-22.11:11:41</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-03-25.09:58:10</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="291" parent="1" name="information_schema">
@@ -1321,7 +1321,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Predicate>`price` &gt;= 0</Predicate>
     </check>
     <column id="349" parent="306" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>8</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
@@ -1672,7 +1672,7 @@ category_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="418" parent="313" name="id">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>6</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>

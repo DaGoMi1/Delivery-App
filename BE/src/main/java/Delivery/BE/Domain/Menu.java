@@ -3,6 +3,8 @@ package Delivery.BE.Domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -36,6 +38,9 @@ public class Menu {
 
     @Column(name = "is_available", nullable = false)
     private boolean isAvailable;        // 메뉴 이용 가능 여부
+
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OptionGroup> optionGroups = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
