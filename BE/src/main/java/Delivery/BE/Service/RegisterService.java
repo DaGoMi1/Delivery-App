@@ -1,6 +1,7 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.RegisterDTO;
+import Delivery.BE.Domain.Cart;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Exception.AlreadyRegisteredException;
 import Delivery.BE.Exception.InformationNotMatchException;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @Transactional // update중 오류가 나면 자동 롤백
 public class RegisterService {
     private final MemberRepository memberRepository;
+    private final CartService cartService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void register(RegisterDTO registerDTO) {
@@ -36,6 +38,8 @@ public class RegisterService {
                 .build();
 
         memberRepository.save(member);
+
+        cartService.saveCart(member);
     }
 
     private void validateUserId(RegisterDTO registerDTO) {

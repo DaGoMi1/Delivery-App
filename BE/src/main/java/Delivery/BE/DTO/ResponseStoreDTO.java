@@ -38,8 +38,8 @@ public class ResponseStoreDTO {
     private Timestamp updatedAt;
 
     public ResponseStoreDTO(Long id, String name, Member member, String description, String phone, String address
-    , Store.Status status, String openingHours, String logoUrl, Double rating, Set<Category> categories
-    , Timestamp createdAt, Timestamp updatedAt) {
+            , Store.Status status, String openingHours, String logoUrl, Double rating, Set<Category> categories
+            , Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.name = name;
         this.memberId = member.getId();

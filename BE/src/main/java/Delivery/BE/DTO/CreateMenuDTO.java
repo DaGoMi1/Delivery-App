@@ -15,7 +15,7 @@ public class CreateMenuDTO {
 
     private String description;         // 메뉴 설명
 
-    @Min(value = 0, message = "가격은 0원 이상이여야 합니다.")
+    @Min(value = 0, message = "가격은 0원 이상이어야 합니다.")
     private int price;               // 메뉴 가격
 
     private String imageUrl;            // 메뉴 이미지 경로

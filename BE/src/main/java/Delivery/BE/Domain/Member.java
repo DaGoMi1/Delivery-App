@@ -43,8 +43,8 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Store> stores = new ArrayList<>();
 
-    @Column(name = "main_address")
-    private Long mainAddress;
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
 
     public enum Role {
         CUSTOMER,   // 손님
