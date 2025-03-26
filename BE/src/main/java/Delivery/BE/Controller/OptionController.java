@@ -1,12 +1,15 @@
 package Delivery.BE.Controller;
 
 import Delivery.BE.DTO.CreateOptionDTO;
+import Delivery.BE.DTO.ResponseOptionDTO;
 import Delivery.BE.DTO.UpdateOptionDTO;
 import Delivery.BE.Service.OptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/option")
@@ -30,5 +33,11 @@ public class OptionController {
     public ResponseEntity<?> deleteOption(@PathVariable Long id) {
         optionService.deleteOption(id);
         return ResponseEntity.ok("옵션 삭제 완료");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOptionGroupByMenuId(@PathVariable Long id) {
+        List<ResponseOptionDTO> optionDTOList = optionService.getOptions(id);
+        return ResponseEntity.ok(optionDTOList);
     }
 }

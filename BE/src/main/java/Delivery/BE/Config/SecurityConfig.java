@@ -31,7 +31,7 @@ public class SecurityConfig {
                                 , "/auth/**")
                         .permitAll()
 
-                        .requestMatchers("/role/**", "/address/**")
+                        .requestMatchers("/role/**", "/address/**", "/cart/**", "/cart-item/**")
                         .hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
 
                         .requestMatchers("/store/**", "/menu/**", "/option-group/**", "/option/**")

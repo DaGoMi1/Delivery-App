@@ -3,6 +3,7 @@ package Delivery.BE.Service;
 import Delivery.BE.DTO.ChangePasswordDTO;
 import Delivery.BE.DTO.EmailFormDTO;
 import Delivery.BE.DTO.FindMemberDTO;
+import Delivery.BE.DTO.ResponseMemberDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Exception.*;
 import Delivery.BE.Repository.MemberRepository;
@@ -47,6 +48,10 @@ public class MemberService {
         }
 
         return findMemberByUserId(userId);
+    }
+
+    public ResponseMemberDTO memberInfoToResponseMemberDTO(Member member) {
+        return new ResponseMemberDTO(member);
     }
 
     public void findUserId(FindMemberDTO findMemberDTO) {
@@ -143,7 +148,7 @@ public class MemberService {
 
     public Member findMemberByUserId(String userId) {
         return memberRepository.findByUserId(userId)
-                .orElseThrow(()-> new NotFoundException("사용자를 찾을 수 없습니다. userId: " + userId));
+                .orElseThrow(() -> new NotFoundException("사용자를 찾을 수 없습니다. userId: " + userId));
     }
 
     @Transactional
@@ -153,22 +158,22 @@ public class MemberService {
     }
 
     @Transactional
-    public  void changePassword(ChangePasswordDTO changePasswordDTO) {
+    public void changePassword(ChangePasswordDTO changePasswordDTO) {
         String newPassword = changePasswordDTO.getNewPassword();
         String newPassword2 = changePasswordDTO.getNewPassword2();
         String oldPassword = changePasswordDTO.getOldPassword();
 
         Member member = getMemberInfo();
 
-        if(newPassword.equals(oldPassword)) {
+        if (newPassword.equals(oldPassword)) {
             throw new PasswordReuseException("직전에 사용한 비밀번호를 재사용 할 수 없습니다.");
         }
 
-        if(!newPassword.equals(newPassword2)) {
+        if (!newPassword.equals(newPassword2)) {
             throw new InformationNotMatchException("새로운 비밀번호가 일치하지 않습니다.");
         }
 
-        if(!passwordEncoder.matches(oldPassword, member.getPassword())) {
+        if (!passwordEncoder.matches(oldPassword, member.getPassword())) {
             throw new JwtAuthenticationException("비밀번호 인증에 실패하였습니다.");
         }
 

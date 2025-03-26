@@ -4,24 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/22 작업 내용&#10;Store - 가게 조회 (카테고리 기준) 기능 구현&#10;&#10;StoreCategory - 가게와 카테고리를 잇는 중간 테이블 구현&#10;&#10;Menu - 카테고리 추가시 이미 값이 있는지 검사 -&gt; 값이 없다면 추가 + 메뉴와 연결된 가게에도 같이 카테고리 추가&#10;&#10;복합키 - MenuCategory와 StoreCategory에 복합키 구성">
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/UpdateMenuDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/UpdateOptionDTO.java" afterDir="false" />
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/25 작업 내용&#10;DB - 장바구니 관련 테이블 추가 (Cart, CartItem, CartItemOption), Order랑 OderItem은 임시 제거 (추후 기능 구현시 다시 짤 생각)&#10;&#10;Cart - 장바구니 조회 기능 구현 (DTO를 통해 필요한 데이터만 형식에 맞춰 반환)&#10;&#10;CartItem - 장바구니에 메뉴 추가 기능 구현 (메뉴 추가시 각 메뉴에 따른 옵션도 같이 추가)&#10;&#10;기타 - 장바구니는 회원가입시 1:1의 관계(Member - Cart)로 생성하기 위해 RegisterService 수정&#10;&#10;다음에 해야할 것 (까먹을까봐 여기도 적는다) - 장바구니에 비우기, 장바구니 메뉴, 옵션 수정 및 삭제, 가게에서 옵션 생성시 중복 가능 여부 (ex 마라탕의 토핑은 중복 가능, 햄버거의 세트 유무는 중복 불가), 그에 따른 예외처리">
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseMemberDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseMenuDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseOptionDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseOptionGroupDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5/storage_v2/_src_/schema/delivery.9BsVMQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f536ff39-5811-497a-b3bd-891db9fb37a5/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MemberController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/MenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/OptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/OptionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/OptionGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/OptionGroupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseAddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseAddressDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseCategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseCategoryDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseStoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseStoreDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/UpdateStoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/UpdateStoreDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/AddressRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/MenuCategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/MenuCategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/MenuService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OptionGroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OptionGroupService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OptionService.java" afterDir="false" />
@@ -188,7 +194,10 @@
       <workItem from="1742360645532" duration="25463000" />
       <workItem from="1742635617313" duration="12499000" />
       <workItem from="1742786656330" duration="700000" />
-      <workItem from="1742788509733" duration="3783000" />
+      <workItem from="1742788509733" duration="4256000" />
+      <workItem from="1742897234957" duration="15188000" />
+      <workItem from="1742924182847" duration="1147000" />
+      <workItem from="1742987818252" duration="3656000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -310,7 +319,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742648646233</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="3/24 작업 내용&#10;Menu - 메뉴 수정 및 삭제 기능 구현&#10;&#10;OptionGroup - 옵션 그룹 수정 및 삭제 기능 구현&#10;&#10;Option - 옵션 수정 및 삭제 기능 구현&#10;&#10;Spring Security - 권한 설정 가독성 있게 변경&#10;&#10;기타 - 불필요한 import 및 DTO 필드 제거">
+      <option name="closed" value="true" />
+      <created>1742810410112</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1742810410112</updated>
+    </task>
+    <task id="LOCAL-00017" summary="3/25 작업 내용&#10;DB - 장바구니 관련 테이블 추가 (Cart, CartItem, CartItemOption), Order랑 OderItem은 임시 제거 (추후 기능 구현시 다시 짤 생각)&#10;&#10;Cart - 장바구니 조회 기능 구현 (DTO를 통해 필요한 데이터만 형식에 맞춰 반환)&#10;&#10;CartItem - 장바구니에 메뉴 추가 기능 구현 (메뉴 추가시 각 메뉴에 따른 옵션도 같이 추가)&#10;&#10;기타 - 장바구니는 회원가입시 1:1의 관계(Member - Cart)로 생성하기 위해 RegisterService 수정&#10;&#10;다음에 해야할 것 (까먹을까봐 여기도 적는다) - 장바구니에 비우기, 장바구니 메뉴, 옵션 수정 및 삭제, 가게에서 옵션 생성시 중복 가능 여부 (ex 마라탕의 토핑은 중복 가능, 햄버거의 세트 유무는 중복 불가), 그에 따른 예외처리">
+      <option name="closed" value="true" />
+      <created>1742912278232</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1742912278232</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,7 +356,9 @@
     <MESSAGE value="3/18 작업 내용&#10;예외 처리 - UserNotFoundException.java와 AddressNotFoundException.java 삭제 후 NotFoundException으로 통일&#10;&#10;Store - 가게 수정 API 구현&#10;&#10;JWT - JWT인증 필터의 역할 변경 -&gt; 유효성 검증 실패 시 예외처리를 하던 것에서 검증 실패 시 SecurityContextHolder에 null 값을 넣는 것으로 대체 (Spring Security의 권한 설정이 가능하게 끔)" />
     <MESSAGE value="3/19 작업 내용&#10;Store - 가게 수정, 삭제 기능 구현&#10;&#10;Menu - 메뉴 생성 기능 구현&#10;&#10;Category - 미리 정해진 카테고리 DB에 저장&#10;&#10;MenuCategory - 메뉴에 카테고리 저장 하는 기능 구현&#10;&#10;Option/OptionGroup - 메뉴의 다양한 옵션들을 저장할 수 있는 기능 구현&#10;&#10;입력값 검증 - DTO에서 입력값 설정 후 컨트롤러에서 검증 하도록 변경&#10;&#10;Spring Security - 스프링 시큐리티의 권한을 가져오는 부분에 논리적 오류 수정 (Role_ 관련)&#10;&#10;기타 - 각 서비스에서 여러 레포지토리와 연결 되어 기능 사용하는 상황에서 -&gt; 각 서비스에서 다른 서비스의 기능을 사용하도록 변경 (비즈니스 로직의 분리, 재사용성 용이)" />
     <MESSAGE value="3/22 작업 내용&#10;Store - 가게 조회 (카테고리 기준) 기능 구현&#10;&#10;StoreCategory - 가게와 카테고리를 잇는 중간 테이블 구현&#10;&#10;Menu - 카테고리 추가시 이미 값이 있는지 검사 -&gt; 값이 없다면 추가 + 메뉴와 연결된 가게에도 같이 카테고리 추가&#10;&#10;복합키 - MenuCategory와 StoreCategory에 복합키 구성" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/22 작업 내용&#10;Store - 가게 조회 (카테고리 기준) 기능 구현&#10;&#10;StoreCategory - 가게와 카테고리를 잇는 중간 테이블 구현&#10;&#10;Menu - 카테고리 추가시 이미 값이 있는지 검사 -&gt; 값이 없다면 추가 + 메뉴와 연결된 가게에도 같이 카테고리 추가&#10;&#10;복합키 - MenuCategory와 StoreCategory에 복합키 구성" />
+    <MESSAGE value="3/24 작업 내용&#10;Menu - 메뉴 수정 및 삭제 기능 구현&#10;&#10;OptionGroup - 옵션 그룹 수정 및 삭제 기능 구현&#10;&#10;Option - 옵션 수정 및 삭제 기능 구현&#10;&#10;Spring Security - 권한 설정 가독성 있게 변경&#10;&#10;기타 - 불필요한 import 및 DTO 필드 제거" />
+    <MESSAGE value="3/25 작업 내용&#10;DB - 장바구니 관련 테이블 추가 (Cart, CartItem, CartItemOption), Order랑 OderItem은 임시 제거 (추후 기능 구현시 다시 짤 생각)&#10;&#10;Cart - 장바구니 조회 기능 구현 (DTO를 통해 필요한 데이터만 형식에 맞춰 반환)&#10;&#10;CartItem - 장바구니에 메뉴 추가 기능 구현 (메뉴 추가시 각 메뉴에 따른 옵션도 같이 추가)&#10;&#10;기타 - 장바구니는 회원가입시 1:1의 관계(Member - Cart)로 생성하기 위해 RegisterService 수정&#10;&#10;다음에 해야할 것 (까먹을까봐 여기도 적는다) - 장바구니에 비우기, 장바구니 메뉴, 옵션 수정 및 삭제, 가게에서 옵션 생성시 중복 가능 여부 (ex 마라탕의 토핑은 중복 가능, 햄버거의 세트 유무는 중복 불가), 그에 따른 예외처리" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/25 작업 내용&#10;DB - 장바구니 관련 테이블 추가 (Cart, CartItem, CartItemOption), Order랑 OderItem은 임시 제거 (추후 기능 구현시 다시 짤 생각)&#10;&#10;Cart - 장바구니 조회 기능 구현 (DTO를 통해 필요한 데이터만 형식에 맞춰 반환)&#10;&#10;CartItem - 장바구니에 메뉴 추가 기능 구현 (메뉴 추가시 각 메뉴에 따른 옵션도 같이 추가)&#10;&#10;기타 - 장바구니는 회원가입시 1:1의 관계(Member - Cart)로 생성하기 위해 RegisterService 수정&#10;&#10;다음에 해야할 것 (까먹을까봐 여기도 적는다) - 장바구니에 비우기, 장바구니 메뉴, 옵션 수정 및 삭제, 가게에서 옵션 생성시 중복 가능 여부 (ex 마라탕의 토핑은 중복 가능, 햄버거의 세트 유무는 중복 불가), 그에 따른 예외처리" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

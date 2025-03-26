@@ -1,6 +1,7 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateOptionDTO;
+import Delivery.BE.DTO.ResponseOptionDTO;
 import Delivery.BE.DTO.UpdateOptionDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Domain.Option;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -51,6 +53,12 @@ public class OptionService {
         Option option = findOptionById(id);
         checkOptionOwner(option);
         optionRepository.delete(option);
+    }
+
+    public List<ResponseOptionDTO> getOptions(Long optionGroupId) {
+        OptionGroup optionGroup = optionGroupService.findOptionGroupById(optionGroupId);
+        List<Option> options = optionGroup.getOptions();
+        return options.stream().map(ResponseOptionDTO::new).toList();
     }
 
     public Option findOptionById(Long id) {
