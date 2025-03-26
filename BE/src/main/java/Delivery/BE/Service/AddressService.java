@@ -51,9 +51,10 @@ public class AddressService {
 
         checkAddressMember(memberAddress);
 
-        if(updateAddressDTO.getAddress() != null) memberAddress.setAddress(updateAddressDTO.getAddress());
-        if(updateAddressDTO.getAlias() != null) memberAddress.setAlias(updateAddressDTO.getAlias());
-        if(updateAddressDTO.getDetailAddress() != null) memberAddress.setDetailAddress(updateAddressDTO.getDetailAddress());
+        if (updateAddressDTO.getAddress() != null) memberAddress.setAddress(updateAddressDTO.getAddress());
+        if (updateAddressDTO.getAlias() != null) memberAddress.setAlias(updateAddressDTO.getAlias());
+        if (updateAddressDTO.getDetailAddress() != null)
+            memberAddress.setDetailAddress(updateAddressDTO.getDetailAddress());
 
         addressRepository.save(memberAddress);
     }
@@ -64,12 +65,7 @@ public class AddressService {
         List<MemberAddress> memberAddresses = addressRepository.findByMemberId(memberId);
 
         return memberAddresses.stream()
-                .map(memberAddress -> new ResponseAddressDTO(
-                        memberAddress.getId(),
-                        memberAddress.getAddress(),
-                        memberAddress.getAlias(),
-                        memberAddress.getDetailAddress(),
-                        memberAddress.isMain()))
+                .map(ResponseAddressDTO::new)
                 .collect(Collectors.toList());
     }
 
@@ -105,7 +101,7 @@ public class AddressService {
         addressRepository.saveAll(memberAddresses);
     }
 
-    private  void checkAddressMember(MemberAddress memberAddress) {
+    private void checkAddressMember(MemberAddress memberAddress) {
         Member member = memberService.getMemberInfo();
         Member addressMember = memberAddress.getMember();
 

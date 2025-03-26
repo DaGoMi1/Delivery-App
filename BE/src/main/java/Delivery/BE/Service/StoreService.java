@@ -67,21 +67,7 @@ public class StoreService {
         List<Store> storeList = storeRepository.findStoresByCategoryId(categoryId);
 
         return storeList.stream()
-                .map(store -> new ResponseStoreDTO(
-                        store.getId(),
-                        store.getName(),
-                        store.getMember(),
-                        store.getDescription(),
-                        store.getPhone(),
-                        store.getAddress(),
-                        store.getStatus(),
-                        store.getOpeningHours(),
-                        store.getLogoUrl(),
-                        store.getRating(),
-                        store.getCategories(),
-                        store.getCreatedAt(),
-                        store.getUpdatedAt()
-                ))
+                .map(ResponseStoreDTO::new)
                 .collect(Collectors.toList());
     }
 
