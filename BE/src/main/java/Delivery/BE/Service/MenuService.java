@@ -1,6 +1,7 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateMenuDTO;
+import Delivery.BE.DTO.ResponseMenuDTO;
 import Delivery.BE.DTO.UpdateMenuDTO;
 import Delivery.BE.Domain.*;
 import Delivery.BE.Exception.ForbiddenException;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -44,8 +46,8 @@ public class MenuService {
 
         if (updateMenuDTO.getName() != null) menu.setName(updateMenuDTO.getName());
         if (updateMenuDTO.getDescription() != null) menu.setDescription(updateMenuDTO.getDescription());
-        if(updateMenuDTO.getPrice() != null) menu.setPrice(updateMenuDTO.getPrice());
-        if(updateMenuDTO.getImageUrl() != null) menu.setImageUrl(updateMenuDTO.getImageUrl());
+        if (updateMenuDTO.getPrice() != null) menu.setPrice(updateMenuDTO.getPrice());
+        if (updateMenuDTO.getImageUrl() != null) menu.setImageUrl(updateMenuDTO.getImageUrl());
         if (updateMenuDTO.getIsAvailable() != null) menu.setAvailable(updateMenuDTO.getIsAvailable());
 
         menuRepository.save(menu);
@@ -56,6 +58,11 @@ public class MenuService {
         Menu menu = findMenuById(id);
         checkMenuOwner(menu);
         menuRepository.delete(menu);
+    }
+
+    public List<ResponseMenuDTO> getMenusInStore(Long storeId) {
+        Store store = storeService.findStoreById(storeId);
+        return store.getMenus().stream().map(ResponseMenuDTO::new).toList();
     }
 
     public Menu findMenuById(Long id) {

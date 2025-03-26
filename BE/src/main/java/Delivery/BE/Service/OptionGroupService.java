@@ -1,6 +1,7 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateOptionGroupDTO;
+import Delivery.BE.DTO.ResponseOptionGroupDTO;
 import Delivery.BE.DTO.UpdateOptionGroupDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Domain.Menu;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -50,6 +52,12 @@ public class OptionGroupService {
         OptionGroup optionGroup = findOptionGroupById(id);
         checkOptionGroupOwner(optionGroup);
         optionGroupRepository.delete(optionGroup);
+    }
+
+    public List<ResponseOptionGroupDTO> getOptionGroups(Long menuId) {
+        Menu menu = menuService.findMenuById(menuId);
+        List<OptionGroup> optionGroups = menu.getOptionGroups();
+        return optionGroups.stream().map(ResponseOptionGroupDTO::new).toList();
     }
 
     public OptionGroup findOptionGroupById(Long id) {

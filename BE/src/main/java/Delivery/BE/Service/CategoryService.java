@@ -20,10 +20,7 @@ public class CategoryService {
         List<Category> categoryList = categoryRepository.findAll();
 
         for (Category category : categoryList) {
-            ResponseCategoryDTO responseCategoryDTO = new ResponseCategoryDTO();
-            responseCategoryDTO.setId(category.getId());
-            responseCategoryDTO.setName(category.getName());
-
+            ResponseCategoryDTO responseCategoryDTO = new ResponseCategoryDTO(category);
             responseCategoryDTOList.add(responseCategoryDTO);
         }
 

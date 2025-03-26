@@ -1,12 +1,15 @@
 package Delivery.BE.Controller;
 
 import Delivery.BE.DTO.CreateOptionGroupDTO;
+import Delivery.BE.DTO.ResponseOptionGroupDTO;
 import Delivery.BE.DTO.UpdateOptionGroupDTO;
 import Delivery.BE.Service.OptionGroupService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/option-group")
@@ -30,5 +33,11 @@ public class OptionGroupController {
     public ResponseEntity<?> deleteOptionGroup(@PathVariable Long id) {
         optionGroupService.deleteOptionGroup(id);
         return ResponseEntity.ok("옵션 그룹 삭제 완료");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOptionGroupByMenuId(@PathVariable Long id) {
+        List<ResponseOptionGroupDTO> optionGroupDTOList = optionGroupService.getOptionGroups(id);
+        return ResponseEntity.ok(optionGroupDTOList);
     }
 }

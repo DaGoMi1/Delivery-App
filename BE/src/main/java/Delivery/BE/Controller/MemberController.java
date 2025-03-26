@@ -3,6 +3,7 @@ package Delivery.BE.Controller;
 import Delivery.BE.DTO.ChangePasswordDTO;
 import Delivery.BE.DTO.FindMemberDTO;
 import Delivery.BE.DTO.RegisterDTO;
+import Delivery.BE.DTO.ResponseMemberDTO;
 import Delivery.BE.Domain.Member;
 import Delivery.BE.Service.MemberService;
 import Delivery.BE.Service.RegisterService;
@@ -38,7 +39,8 @@ public class MemberController {
     @GetMapping("")
     public ResponseEntity<?> info() {
         Member member = memberService.getMemberInfo();
-        return ResponseEntity.ok(member);
+        ResponseMemberDTO responseMemberDTO = memberService.memberInfoToResponseMemberDTO(member);
+        return ResponseEntity.ok(responseMemberDTO);
     }
 
     @DeleteMapping("") // Member 탈퇴 요청
