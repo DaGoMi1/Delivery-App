@@ -12,4 +12,7 @@ import java.util.List;
 public interface StoreRepository extends JpaRepository<Store, Long> {
     @Query("SELECT s FROM Store s JOIN s.categories c WHERE c.id = :categoryId")
     List<Store> findStoresByCategoryId(@Param("categoryId") Long categoryId);
+
+    @Query("SELECT s FROM Store s WHERE s.name LIKE %:name%")
+    List<Store> findStoresByName(@Param("name") String name);
 }

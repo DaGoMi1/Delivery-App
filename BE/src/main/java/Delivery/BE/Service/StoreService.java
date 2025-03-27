@@ -65,7 +65,15 @@ public class StoreService {
 
     public List<ResponseStoreDTO> getStoresByCategory(Long categoryId) {
         List<Store> storeList = storeRepository.findStoresByCategoryId(categoryId);
+        return storeToDTO(storeList);
+    }
 
+    public List<ResponseStoreDTO> getStoresByName(String name) {
+        List<Store> storeList = storeRepository.findStoresByName(name);
+        return storeToDTO(storeList);
+    }
+
+    private List<ResponseStoreDTO> storeToDTO(List<Store> storeList) {
         return storeList.stream()
                 .map(ResponseStoreDTO::new)
                 .collect(Collectors.toList());
