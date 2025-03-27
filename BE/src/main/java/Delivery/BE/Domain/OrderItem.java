@@ -1,21 +1,18 @@
 package Delivery.BE.Domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "order_items")
+@Table(name = "order_item")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,17 +21,19 @@ public class OrderItem {
     @Column(name = "quantity", nullable = false) // 주문 수량
     private int quantity;
 
-    @Column(name = "order_id", nullable = false) // 주문과 연결
-    private Long orderId;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false) // Member 와 연결
+    private Order order;
 
-    @Column(name = "menu_id", nullable = false) // 메뉴와 연결
-    private Long menuId;
+    @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItemOption> orderItemOptions = new ArrayList<>();
 
-    @Column(name = "created_at", updatable = false) // 주문 생성 시각
-    @CreationTimestamp
-    private Timestamp createdAt;
+    @Column(name = "menu_name", nullable = false) // 주문 당시 메뉴 이름
+    private String menuName;
 
-    @Column(name = "updated_at") // 주문 업데이트 시각
-    @UpdateTimestamp
-    private Timestamp updatedAt;
+    @Column(name = "menu_description") // 주문 당시 메뉴 설명
+    private String menuDescription;
+
+    @Column(name = "menu_price", nullable = false) // 주문 당시 메뉴 가격
+    private int menuPrice;
 }

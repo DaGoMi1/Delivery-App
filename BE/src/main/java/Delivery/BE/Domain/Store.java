@@ -54,6 +54,9 @@ public class Store {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Menu> menus = new ArrayList<>();
 
+    @OneToMany(mappedBy = "store", cascade = CascadeType.PERSIST)
+    private List<Order> orders = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(
             name = "store_category",   // 중간 테이블 이름

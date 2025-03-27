@@ -39,9 +39,15 @@ public class StoreController {
         return ResponseEntity.ok("가게 삭제 완료");
     }
 
-    @GetMapping("/category/{id}")
+    @GetMapping("/category/{id}") // 카테고리로 가게 조회
     public ResponseEntity<?> getStoreListByCategory(@PathVariable Long id) {
         List<ResponseStoreDTO> list = storeService.getStoresByCategory(id);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("") // 이름으로 가게 조회
+    public ResponseEntity<?> getStoreListByName(@RequestParam String name) {
+        List<ResponseStoreDTO> list = storeService.getStoresByName(name);
         return ResponseEntity.ok(list);
     }
 }
