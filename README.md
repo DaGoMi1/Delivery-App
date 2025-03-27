@@ -25,7 +25,7 @@
 | 🔐 JWT 인증 | Access Token, Refresh Token 기반 로그인 |
 | 🛒 장바구니 | 메뉴를 장바구니에 추가/삭제 |
 | 📦 주문 관리 | 배달/픽업 주문 생성 및 상태 변경 (예정) |
-| 🏠 가게 관리 | 사장님 계정이 메뉴 및 주문을 관리 (예정)|
+| 🏠 가게 관리 | 사장님 계정이 메뉴 및 주문을 관리 |
 
 ---
 
@@ -35,7 +35,8 @@ ERD 변경 과정\
 [ERD](https://drive.google.com/file/d/1NwxAfwWm77QdKvtVt4K1UndHKuJ1FdgL/view?usp=sharing)\
 [ERD 1차 변경](https://drive.google.com/file/d/1xJN1zos4hOb2IoZAH681U0JbehwFDfNI/view?usp=sharing)\
 [ERD 2차 변경](https://drive.google.com/file/d/1uE4hROb0lU1AZjo-qNGRsaL5nsAWcUHs/view?usp=sharing)\
-[ERD 3차 변경](https://drive.google.com/file/d/11MP8k2anu-_WZYavYzYC1PNzRgoMvrgH/view?usp=sharing)
+[ERD 3차 변경](https://drive.google.com/file/d/11MP8k2anu-_WZYavYzYC1PNzRgoMvrgH/view?usp=sharing)\
+[ERD 4차 변경](https://drive.google.com/file/d/1y74OE9vOHWuTnC3YISA0UDA689GYEMq1/view?usp=sharing)
 
 
 ---
