@@ -28,10 +28,11 @@ public class SecurityConfig {
                 // 권한 설정
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/member/register", "/member/id", "/member/password"
-                                , "/auth/**")
+                                ,"/auth/**", "/category/**")
                         .permitAll()
 
-                        .requestMatchers("/role/**", "/address/**", "/cart/**", "/cart-item/**")
+                        .requestMatchers("/role/**", "/address/**", "/cart/**", "/cart-item/**"
+                                ,"/favorite/**", "/review/**")
                         .hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
 
                         .requestMatchers("/store/**", "/menu/**", "/option-group/**", "/option/**")

@@ -73,7 +73,7 @@ public class MenuService {
     public void checkMenuOwner(Menu menu) { // 요청한 메뉴에 대한 정보가 소유자가 맞는지 확인
         Member member = memberService.getMemberInfo();
 
-        if (!Objects.equals(menu.getStore().getMember(), member)) {
+        if (!Objects.equals(menu.getStore().getMember(), member) && member.getRole() != Member.Role.ADMIN) {
             throw new ForbiddenException("해당 메뉴의 소유자가 아닙니다.");
         }
     }

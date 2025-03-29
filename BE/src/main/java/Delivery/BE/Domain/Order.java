@@ -48,6 +48,9 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
+
     @Column(name = "address", nullable = false)
     private String address;
 
@@ -55,11 +58,11 @@ public class Order {
     private String detailAddress;
 
     public enum Status {
-        PENDING,
-        CONFIRMED,
-        PREPARING,
-        OUT_FOR_DELIVERY,
-        COMPLETED,
-        CANCELLED
+        PENDING, // 사용자가 주문 요청한 상태
+        CONFIRMED, // 가게가 주문을 확인한 상태
+        PREPARING, // 가게가 배달 준비(요리 중)하는 상태
+        OUT_FOR_DELIVERY, // 배달이 출발한 상태
+        COMPLETED, // 배달 완료 된 상태
+        CANCELLED // 주문이 취소된 상태
     }
 }

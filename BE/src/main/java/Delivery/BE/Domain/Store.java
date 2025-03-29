@@ -65,6 +65,9 @@ public class Store {
     )
     private Set<Category> categories;
 
+    @ManyToMany(mappedBy = "favoriteStores")  // Member 엔티티와의 관계
+    private Set<Member> favoriteMembers;
+
     @Column(name = "created_at", updatable = false) // 가게 생성 시각
     @CreationTimestamp
     private Timestamp createdAt;

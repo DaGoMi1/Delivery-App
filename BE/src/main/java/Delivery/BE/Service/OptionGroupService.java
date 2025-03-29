@@ -69,7 +69,7 @@ public class OptionGroupService {
         Member member = memberService.getMemberInfo();
         Member optionGroupOwner = optionGroup.getMenu().getStore().getMember();
 
-        if (!Objects.equals(optionGroupOwner, member)) {
+        if (!Objects.equals(optionGroupOwner, member) && member.getRole() != Member.Role.ADMIN) {
             throw new ForbiddenException("해당 옵션 그룹의 소유자가 아닙니다.");
         }
     }

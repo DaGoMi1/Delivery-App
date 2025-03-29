@@ -3,6 +3,7 @@ package Delivery.BE.Service;
 import Delivery.BE.DTO.CreateOrderDTO;
 import Delivery.BE.DTO.ResponseOrderDTO;
 import Delivery.BE.Domain.*;
+import Delivery.BE.Exception.ForbiddenException;
 import Delivery.BE.Exception.MenuUnavailableException;
 import Delivery.BE.Exception.NotFoundException;
 import Delivery.BE.Repository.OrderRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -75,5 +77,18 @@ public class OrderService {
         }
 
         return totalAmount;
+    }
+
+    public Order findOrderById(Long id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("주문을 찾을 수 없습니다. ID: " + id));
+    }
+
+    public void checkOrderOwner(Order order) { // 요청한 주문에 대한 정보가 소유자가 맞는지 확인
+        Member member = memberService.getMemberInfo();
+        Member orderOwner = order.getMember();
+
+        if (!Objects.equals(orderOwner, member) && member.getRole() != Member.Role.ADMIN)
+            throw new ForbiddenException("해당 주문의 소유자가 아닙니다.");
     }
 }
