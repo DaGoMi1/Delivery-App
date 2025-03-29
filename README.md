@@ -44,7 +44,7 @@ ERD 변경 과정\
 
 ## 📑 API 명세
 
-- API 문서: (추후 추가 예정)\
+- API 문서: (추후 추가 예정)
 - Postman Collection: [Postman](https://www.postman.com/flight-pilot-69639445/workspace/delivery-test/collection/33603196-30098c20-c4ae-4137-b2ab-eaa5ed66cc45?action=share&creator=33603196)
 
 ---
