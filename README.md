@@ -9,7 +9,7 @@
 
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-green?logo=spring)
 ![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql)
+![MySQL](https://img.shields.io/badge/MySQL-8.0.36-blue?logo=mysql)
 
 - **Backend:** Spring Boot, Spring Security, JPA, MySQL  
 - **Authentication:** JWT (Access Token + Refresh Token)  
