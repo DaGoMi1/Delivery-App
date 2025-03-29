@@ -1,12 +1,8 @@
 package Delivery.BE.Domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
@@ -16,28 +12,27 @@ import java.sql.Timestamp;
 @Table(name = "review")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "member_id", nullable = false) // Member 와 연결
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false) // Member 와 연결
+    private Member member;
 
-    @Column(name = "store_id", nullable = false)  // Store 와 연결
-    private Long storeId;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)  // Store 와 연결
+    private Order order;
 
     @Column(name = "rating", nullable = false) // 리뷰 평점
-    private Double rating;
+    private int rating;
 
     @Column(name = "comment", length = 500) // 리뷰 내용
     private String comment;
 
-    @Column(name = "created_at", updatable = false) // 주문 생성 시각
+    @Column(name = "created_at", updatable = false) // 리뷰 생성 시각
     @CreationTimestamp
     private Timestamp createdAt;
-
-    @Column(name = "updated_at") // 주문 업데이트 시각
-    @UpdateTimestamp
-    private Timestamp updatedAt;
 }

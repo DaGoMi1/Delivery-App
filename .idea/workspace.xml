@@ -4,35 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/26 작업 내용&#10;DTO - DTO 생성자 깔끔하게 변경 (Member, MemberAddress 등등)&#10;&#10;Option - 옵션 조회 (옵션 그룹 기준) 기능 구현&#10;&#10;OptionGroup - 옵션 그룹 조회 (메뉴 기준) 기능 구현&#10;&#10;Menu - 메뉴 조회 (가게 기준) 기능 구현">
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/CreateOrderDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseOrderDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseOrderItemDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseOrderItemOptionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/OrderItemOption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Exception/MenuUnavailableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/OrderItemOptionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/OrderItemRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/OrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderItemOptionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderItemService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderService.java" afterDir="false" />
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/27 작업 내용&#10;DB - 리뷰 테이블 임시 삭제 (추후 구현 예정), Order, OrderItem, OrderItemOption 테이블 생성 및 관리&#10;&#10;Cart - 장바구니 비우기 기능 구현&#10;&#10;CartItem - 장바구니에서 메뉴 삭제 기능 구현&#10;&#10;Order - 주문 생성 및 조회 기능 구현&#10;&#10;Store - 가게 조회 (이름 기준) 기능 구현">
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/FavoriteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/ReviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/CreateFavoriteDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/CreateReviewDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseFavoriteDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseReviewDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Favorite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/FavoriteId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/FavoriteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/ReviewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FavoriteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/ReviewService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/CartItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/CartItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/StoreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CartItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -202,7 +194,9 @@
       <workItem from="1742987818252" duration="4416000" />
       <workItem from="1742992443786" duration="283000" />
       <workItem from="1743047459408" duration="6170000" />
-      <workItem from="1743075715983" duration="7788000" />
+      <workItem from="1743075715983" duration="8552000" />
+      <workItem from="1743086589270" duration="2638000" />
+      <workItem from="1743223285725" duration="13739000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -348,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742992094264</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="3/27 작업 내용&#10;DB - 리뷰 테이블 임시 삭제 (추후 구현 예정), Order, OrderItem, OrderItemOption 테이블 생성 및 관리&#10;&#10;Cart - 장바구니 비우기 기능 구현&#10;&#10;CartItem - 장바구니에서 메뉴 삭제 기능 구현&#10;&#10;Order - 주문 생성 및 조회 기능 구현&#10;&#10;Store - 가게 조회 (이름 기준) 기능 구현">
+      <option name="closed" value="true" />
+      <created>1743085179842</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1743085179842</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +374,8 @@
     <MESSAGE value="3/24 작업 내용&#10;Menu - 메뉴 수정 및 삭제 기능 구현&#10;&#10;OptionGroup - 옵션 그룹 수정 및 삭제 기능 구현&#10;&#10;Option - 옵션 수정 및 삭제 기능 구현&#10;&#10;Spring Security - 권한 설정 가독성 있게 변경&#10;&#10;기타 - 불필요한 import 및 DTO 필드 제거" />
     <MESSAGE value="3/25 작업 내용&#10;DB - 장바구니 관련 테이블 추가 (Cart, CartItem, CartItemOption), Order랑 OderItem은 임시 제거 (추후 기능 구현시 다시 짤 생각)&#10;&#10;Cart - 장바구니 조회 기능 구현 (DTO를 통해 필요한 데이터만 형식에 맞춰 반환)&#10;&#10;CartItem - 장바구니에 메뉴 추가 기능 구현 (메뉴 추가시 각 메뉴에 따른 옵션도 같이 추가)&#10;&#10;기타 - 장바구니는 회원가입시 1:1의 관계(Member - Cart)로 생성하기 위해 RegisterService 수정&#10;&#10;다음에 해야할 것 (까먹을까봐 여기도 적는다) - 장바구니에 비우기, 장바구니 메뉴, 옵션 수정 및 삭제, 가게에서 옵션 생성시 중복 가능 여부 (ex 마라탕의 토핑은 중복 가능, 햄버거의 세트 유무는 중복 불가), 그에 따른 예외처리" />
     <MESSAGE value="3/26 작업 내용&#10;DTO - DTO 생성자 깔끔하게 변경 (Member, MemberAddress 등등)&#10;&#10;Option - 옵션 조회 (옵션 그룹 기준) 기능 구현&#10;&#10;OptionGroup - 옵션 그룹 조회 (메뉴 기준) 기능 구현&#10;&#10;Menu - 메뉴 조회 (가게 기준) 기능 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/26 작업 내용&#10;DTO - DTO 생성자 깔끔하게 변경 (Member, MemberAddress 등등)&#10;&#10;Option - 옵션 조회 (옵션 그룹 기준) 기능 구현&#10;&#10;OptionGroup - 옵션 그룹 조회 (메뉴 기준) 기능 구현&#10;&#10;Menu - 메뉴 조회 (가게 기준) 기능 구현" />
+    <MESSAGE value="3/27 작업 내용&#10;DB - 리뷰 테이블 임시 삭제 (추후 구현 예정), Order, OrderItem, OrderItemOption 테이블 생성 및 관리&#10;&#10;Cart - 장바구니 비우기 기능 구현&#10;&#10;CartItem - 장바구니에서 메뉴 삭제 기능 구현&#10;&#10;Order - 주문 생성 및 조회 기능 구현&#10;&#10;Store - 가게 조회 (이름 기준) 기능 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/27 작업 내용&#10;DB - 리뷰 테이블 임시 삭제 (추후 구현 예정), Order, OrderItem, OrderItemOption 테이블 생성 및 관리&#10;&#10;Cart - 장바구니 비우기 기능 구현&#10;&#10;CartItem - 장바구니에서 메뉴 삭제 기능 구현&#10;&#10;Order - 주문 생성 및 조회 기능 구현&#10;&#10;Store - 가게 조회 (이름 기준) 기능 구현" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

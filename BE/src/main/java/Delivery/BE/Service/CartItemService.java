@@ -32,6 +32,12 @@ public class CartItemService {
         Menu menu = menuService.findMenuById(createCartItemDTO.getMenuId());
 
         if (!menu.isAvailable()) throw new MenuUnavailableException("현재 선택하신 메뉴는 이용 불가능합니다.");
+        if (!cart.getCartItems().isEmpty()) { // 장바구니가 비어있지 않다면
+            Store store = cart.getCartItems().getFirst().getMenu().getStore(); // 장바구니에 담은 첫 메뉴의 가게
+
+            if(!Objects.equals(store, menu.getStore())) // 장바구니에 담긴 메뉴의 가게와 현재 추가할려는 메뉴의 가게가 다르다면
+                throw new MenuUnavailableException("장바구니에는 같은 가게의 메뉴만 담을 수 있습니다.");
+        }
 
         CartItem cartItem = CartItem.builder()
                 .cart(cart)
@@ -75,7 +81,7 @@ public class CartItemService {
     public void checkCartItemOwner(CartItem cartItem) { // 요청한 장바구니 메뉴에 대한 정보가 소유자가 맞는지 확인
         Member member = memberService.getMemberInfo();
 
-        if (!Objects.equals(cartItem.getCart().getMember(), member)) {
+        if (!Objects.equals(cartItem.getCart().getMember(), member) && member.getRole() != Member.Role.ADMIN) {
             throw new ForbiddenException("해당 장바구니의 소유자가 아닙니다.");
         }
     }
