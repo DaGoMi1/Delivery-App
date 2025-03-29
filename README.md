@@ -44,7 +44,7 @@ ERD 변경 과정\
 
 ## 📑 API 명세
 
-- API 문서: [Slack](https://app.slack.com/client/T08ECSKPSFL?selected_team_id=T08ECSKPSFL) (링크 변경 예정)
+- API 문서: [Slack](https://www.postman.com/flight-pilot-69639445/workspace/delivery-test/collection/33603196-30098c20-c4ae-4137-b2ab-eaa5ed66cc45?action=share&creator=33603196) (링크 변경 예정)
 - Postman Collection: [링크 추가] (추후 추가 예정)
 
 ---
