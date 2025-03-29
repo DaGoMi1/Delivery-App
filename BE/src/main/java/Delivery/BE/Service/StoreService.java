@@ -63,9 +63,29 @@ public class StoreService {
         storeRepository.deleteById(id);
     }
 
+    public void updateRating(Long storeId, int ratingSum, int reviewCount) {
+        Store store = findStoreById(storeId);
+
+        if (reviewCount == 0) store.setRating(0D);
+        else {
+            double averageRating = Math.round((ratingSum / (reviewCount * 1.0)) * 10) / 10.0;
+            store.setRating(averageRating);
+        }
+
+        storeRepository.save(store);
+    }
+
     public List<ResponseStoreDTO> getStoresByCategory(Long categoryId) {
         List<Store> storeList = storeRepository.findStoresByCategoryId(categoryId);
+        return storeToDTO(storeList);
+    }
 
+    public List<ResponseStoreDTO> getStoresByName(String name) {
+        List<Store> storeList = storeRepository.findStoresByName(name);
+        return storeToDTO(storeList);
+    }
+
+    private List<ResponseStoreDTO> storeToDTO(List<Store> storeList) {
         return storeList.stream()
                 .map(ResponseStoreDTO::new)
                 .collect(Collectors.toList());
@@ -80,6 +100,7 @@ public class StoreService {
         Member member = memberService.getMemberInfo();
         Member storeOwner = store.getMember();
 
-        if (!Objects.equals(storeOwner, member)) throw new ForbiddenException("해당 가게의 소유자가 아닙니다.");
+        if (!Objects.equals(storeOwner, member) && member.getRole() != Member.Role.ADMIN)
+            throw new ForbiddenException("해당 가게의 소유자가 아닙니다.");
     }
 }

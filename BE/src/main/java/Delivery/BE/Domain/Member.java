@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -43,8 +44,22 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Store> stores = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
+    private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
+
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
+
+    @ManyToMany
+    @JoinTable(
+            name = "favorite",   // 중간 테이블 이름
+            joinColumns = @JoinColumn(name = "member_id"),  // Member 와의 관계
+            inverseJoinColumns = @JoinColumn(name = "store_id")  // Store 와의 관계
+    )
+    private Set<Store> favoriteStores;
 
     public enum Role {
         CUSTOMER,   // 손님

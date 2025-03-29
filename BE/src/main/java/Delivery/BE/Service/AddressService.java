@@ -105,6 +105,7 @@ public class AddressService {
         Member member = memberService.getMemberInfo();
         Member addressMember = memberAddress.getMember();
 
-        if (!Objects.equals(addressMember, member)) throw new ForbiddenException("해당 주소의 소유자가 아닙니다.");
+        if (!Objects.equals(addressMember, member) && member.getRole() != Member.Role.ADMIN)
+            throw new ForbiddenException("해당 주소의 소유자가 아닙니다.");
     }
 }
