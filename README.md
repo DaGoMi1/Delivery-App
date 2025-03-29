@@ -7,7 +7,7 @@
 
 ## 📌 기술 스택
 
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7.5-green?logo=spring)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-green?logo=spring)
 ![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql)
 
