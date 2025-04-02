@@ -74,9 +74,4 @@ public class JwtUtil {
         }
     }
 
-    // 토큰 만료 여부 확인
-    private Boolean isTokenExpired(String token) {
-        return extractAllClaims(token).getExpiration().before(new Date());
-    }
-
 }
