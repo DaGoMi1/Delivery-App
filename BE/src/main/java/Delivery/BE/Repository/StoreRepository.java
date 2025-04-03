@@ -15,4 +15,10 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 
     @Query("SELECT s FROM Store s WHERE s.name LIKE %:name%")
     List<Store> findStoresByName(@Param("name") String name);
+
+    @Query("SELECT COALESCE(SUM(r.rating), 0) FROM Review r WHERE r.order.store.id = :storeId")
+    int getRatingSumByStoreId(@Param("storeId") Long storeId);
+
+    @Query("SELECT COUNT(r) FROM Review r WHERE r.order.store.id = :storeId")
+    int getReviewCountByStoreId(@Param("storeId") Long storeId);
 }
