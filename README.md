@@ -10,9 +10,13 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-green?logo=spring)
 ![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0.36-blue?logo=mysql)
+![Redis](https://img.shields.io/badge/Redis-7.4.2-red?logo=redis)
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue?logo=docker)
 
 - **Backend:** Spring Boot, Spring Security, JPA, MySQL  
-- **Authentication:** JWT (Access Token + Refresh Token)  
+- **Authentication:** JWT (Access Token + Refresh Token)
+- **Cache:** Redis (Docker 컨테이너 기반, 데이터 조회 성능 최적화)
+- → 현재 Docker와 Redis 입문 단계 학습 중  
 - **Infra:** AWS (예정)  
 - **Build:** Gradle  
 
