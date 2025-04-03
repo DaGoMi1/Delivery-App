@@ -48,9 +48,6 @@ public class Store {
     @Column(name = "logo_url") // 가게 로고 경로
     private String logoUrl;
 
-    @Column(name = "rating") // 가게 평점
-    private Double rating;
-
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Menu> menus = new ArrayList<>();
 

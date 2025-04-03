@@ -8,16 +8,18 @@ public class ResponseFavoriteDTO {
     private Long storeId;
 
     private String storeName;
-    private Double storeRating;
     private String storeImage;
     private String storeDescription;
 
-    public ResponseFavoriteDTO(Store store) {
+    private ResponseRatingDTO ratingDTO;
+
+    public ResponseFavoriteDTO(Store store, ResponseRatingDTO ratingDTO) {
         this.storeId = store.getId();
 
         this.storeName = store.getName();
-        this.storeRating = store.getRating();
         this.storeDescription = store.getDescription();
         this.storeImage = store.getLogoUrl();
+
+        this.ratingDTO = ratingDTO;
     }
 }

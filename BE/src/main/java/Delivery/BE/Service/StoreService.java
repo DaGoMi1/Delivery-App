@@ -1,6 +1,7 @@
 package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateStoreDTO;
+import Delivery.BE.DTO.ResponseRatingDTO;
 import Delivery.BE.DTO.ResponseStoreDTO;
 import Delivery.BE.DTO.UpdateStoreDTO;
 import Delivery.BE.Domain.Member;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class StoreService {
     private final StoreRepository storeRepository;
     private final MemberService memberService;
+    private final RedisRatingService redisRatingService;
 
     @Transactional
     public void createStore(CreateStoreDTO createStoreDTO, Member member) {
@@ -33,7 +35,6 @@ public class StoreService {
                 .description(createStoreDTO.getDescription())
                 .openingHours(createStoreDTO.getOpeningHours())
                 .status(Store.Status.CLOSED)
-                .rating(0.0)
                 .build();
 
         storeRepository.save(store);
@@ -63,18 +64,6 @@ public class StoreService {
         storeRepository.deleteById(id);
     }
 
-    public void updateRating(Long storeId, int ratingSum, int reviewCount) {
-        Store store = findStoreById(storeId);
-
-        if (reviewCount == 0) store.setRating(0D);
-        else {
-            double averageRating = Math.round((ratingSum / (reviewCount * 1.0)) * 10) / 10.0;
-            store.setRating(averageRating);
-        }
-
-        storeRepository.save(store);
-    }
-
     public List<ResponseStoreDTO> getStoresByCategory(Long categoryId) {
         List<Store> storeList = storeRepository.findStoresByCategoryId(categoryId);
         return storeToDTO(storeList);
@@ -85,9 +74,13 @@ public class StoreService {
         return storeToDTO(storeList);
     }
 
+    // Redis에서 가게의 리뷰 평점 합과 리뷰 개수로 평점 계산
     private List<ResponseStoreDTO> storeToDTO(List<Store> storeList) {
         return storeList.stream()
-                .map(ResponseStoreDTO::new)
+                .map(store -> {
+                    ResponseRatingDTO responseRatingDTO = redisRatingService.getRating(store.getId()); // 평점 DTO
+                    return new ResponseStoreDTO(store, responseRatingDTO); // 가게 반환 DTO에 평점 DTO 추가
+                })
                 .collect(Collectors.toList());
     }
 
@@ -102,5 +95,17 @@ public class StoreService {
 
         if (!Objects.equals(storeOwner, member) && member.getRole() != Member.Role.ADMIN)
             throw new ForbiddenException("해당 가게의 소유자가 아닙니다.");
+    }
+
+    public List<Store> findAllStores() {
+        return storeRepository.findAll();
+    }
+
+    public int getRatingSumByStoreId(Long storeId) {
+        return storeRepository.getRatingSumByStoreId(storeId);
+    }
+
+    public int getReviewCountByStoreId(Long storeId) {
+        return storeRepository.getReviewCountByStoreId(storeId);
     }
 }

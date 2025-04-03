@@ -20,8 +20,8 @@ import java.util.Objects;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final OrderService orderService;
-    private final StoreService storeService;
     private final MemberService memberService;
+    private final RedisRatingService redisRatingService;
 
     @Transactional
     public void createReview(CreateReviewDTO createReviewDTO) {
@@ -38,9 +38,9 @@ public class ReviewService {
 
         reviewRepository.save(review);
 
+        // Redis에 리뷰 점수와 리뷰 개수 1 증가 시키기 (가게 조회시 DB 접근 X, Redis에서 빠른 조회)
         Long storeId = order.getStore().getId();
-
-        requestUpdateRating(storeId);
+        redisRatingService.updateRating(storeId, createReviewDTO.getRating(), 1);
     }
 
     public List<ResponseReviewDTO> getAllMyReviews() {
@@ -62,17 +62,9 @@ public class ReviewService {
         checkReviewOwner(review);
         reviewRepository.delete(review);
 
-        requestUpdateRating(review.getOrder().getStore().getId());
-    }
-
-    private void requestUpdateRating(Long storeId) {
-        int reviewCount = (int) reviewRepository.countByStoreId(storeId);
-        int ratingSum = 0;
-
-        List<Review> list = reviewRepository.findAllByStoreId(storeId);
-        for (Review r : list) ratingSum += r.getRating();
-
-        storeService.updateRating(storeId, ratingSum, reviewCount);
+        // 마찬가지로 Redis에 삭제된 리뷰에 대한 합과 개수 감소 시키기
+        Long storeId = review.getOrder().getStore().getId();
+        redisRatingService.updateRating(storeId, -review.getRating(), -1);
     }
 
     public Review findReviewById(Long id) {
