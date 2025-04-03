@@ -2,6 +2,7 @@ package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateFavoriteDTO;
 import Delivery.BE.DTO.ResponseFavoriteDTO;
+import Delivery.BE.DTO.ResponseRatingDTO;
 import Delivery.BE.Domain.*;
 import Delivery.BE.Exception.AlreadyRegisteredException;
 import Delivery.BE.Exception.NotFoundException;
@@ -20,6 +21,7 @@ public class FavoriteService {
     private final FavoriteRepository favoriteRepository;
     private final MemberService memberService;
     private final StoreService storeService;
+    private final RedisRatingService redisRatingService;
 
     @Transactional
     public void createFavorite(CreateFavoriteDTO createFavoriteDTO) {
@@ -42,7 +44,11 @@ public class FavoriteService {
         Set<Store> favorites = member.getFavoriteStores();
 
         return favorites.stream()
-                .map(ResponseFavoriteDTO::new)
+                .map(favorite -> {
+                    Long storeId = favorite.getId();
+                    ResponseRatingDTO responseRatingDTO = redisRatingService.getRating(storeId); // 평점 DTO
+                    return new ResponseFavoriteDTO(favorite, responseRatingDTO); // 찜 반환 DTO에 평점 DTO 추가
+                })
                 .collect(Collectors.toList());
     }
 

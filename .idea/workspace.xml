@@ -4,27 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="3/27 작업 내용&#10;DB - 리뷰 테이블 임시 삭제 (추후 구현 예정), Order, OrderItem, OrderItemOption 테이블 생성 및 관리&#10;&#10;Cart - 장바구니 비우기 기능 구현&#10;&#10;CartItem - 장바구니에서 메뉴 삭제 기능 구현&#10;&#10;Order - 주문 생성 및 조회 기능 구현&#10;&#10;Store - 가게 조회 (이름 기준) 기능 구현">
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/FavoriteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/ReviewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/CreateFavoriteDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/CreateReviewDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseFavoriteDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseReviewDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Favorite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/FavoriteId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/FavoriteRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/ReviewRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FavoriteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/ReviewService.java" afterDir="false" />
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="4/2 작업 내용&#10;&#10;Docker를 통한 Redis 입문 및 학습&#10;RedisConfig 추가&#10;&#10;다음에 할 것 - 자주 조회 되고 데이터의 변경이 적은 기능 들에 Redis를 이용한 조회 해보기">
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseRatingDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/RedisInitializerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/RedisRatingService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseFavoriteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseFavoriteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseStoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseStoreDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/CartItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FavoriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FavoriteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/ReviewService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,8 +63,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Exception" />
         <option value="Interface" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -196,7 +189,14 @@
       <workItem from="1743047459408" duration="6170000" />
       <workItem from="1743075715983" duration="8552000" />
       <workItem from="1743086589270" duration="2638000" />
-      <workItem from="1743223285725" duration="13739000" />
+      <workItem from="1743223285725" duration="18045000" />
+      <workItem from="1743246751517" duration="69000" />
+      <workItem from="1743246951786" duration="42000" />
+      <workItem from="1743334427945" duration="1535000" />
+      <workItem from="1743418746632" duration="5082000" />
+      <workItem from="1743586010694" duration="1586000" />
+      <workItem from="1743590773230" duration="716000" />
+      <workItem from="1743602618825" duration="15124000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -350,7 +350,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743085179842</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="3/29 작업 내용&#10;DB - 리뷰 테이블 구현 (Order와 연결, Member와 연결)&#10;&#10;Review - 리뷰 생성,삭제,조회 기능 구현 &#10;1. 주문을 했을때 자기가 한 주문에 대해서 리뷰를 할 수 있음 &#10;2. 장바구니에 메뉴를 추가 할때는 하나의 가게에서만 가능하도록&#10;3. 리뷰를 생성할 때 가게의 평점도 업데이트&#10;4. 조회는 자신이 쓴 리뷰와 특정 가게의 리뷰를 조회 할 수 있도록 구분&#10;&#10;Favorite - 가게를 찜하는 기능 구현 (가게 찜, 찜 삭제, 찜한 가게 조회 구현)&#10;&#10;다음에 할 것 - 현재까지는 주문 요청시 ENUM(PENDING) 상태가 되는데 배달 요청 사용자, 가게, 배달 하는 사람의 기능들로 Status 상태를 변경 가능하도록 하기&#10;&#10;리뷰 작성마다 가게 평점 업데이트를 조금 더 효율적으로 할 수 있을 것 같은 구글링 해보니 Redis라는게 있던데 찾아보고 필요하다면 공부 할 것">
+      <option name="closed" value="true" />
+      <created>1743241361324</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1743241361324</updated>
+    </task>
+    <task id="LOCAL-00021" summary="4/2 작업 내용&#10;&#10;Docker를 통한 Redis 입문 및 학습&#10;RedisConfig 추가&#10;&#10;다음에 할 것 - 자주 조회 되고 데이터의 변경이 적은 기능 들에 Redis를 이용한 조회 해보기">
+      <option name="closed" value="true" />
+      <created>1743603261822</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1743603261823</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,7 +391,9 @@
     <MESSAGE value="3/25 작업 내용&#10;DB - 장바구니 관련 테이블 추가 (Cart, CartItem, CartItemOption), Order랑 OderItem은 임시 제거 (추후 기능 구현시 다시 짤 생각)&#10;&#10;Cart - 장바구니 조회 기능 구현 (DTO를 통해 필요한 데이터만 형식에 맞춰 반환)&#10;&#10;CartItem - 장바구니에 메뉴 추가 기능 구현 (메뉴 추가시 각 메뉴에 따른 옵션도 같이 추가)&#10;&#10;기타 - 장바구니는 회원가입시 1:1의 관계(Member - Cart)로 생성하기 위해 RegisterService 수정&#10;&#10;다음에 해야할 것 (까먹을까봐 여기도 적는다) - 장바구니에 비우기, 장바구니 메뉴, 옵션 수정 및 삭제, 가게에서 옵션 생성시 중복 가능 여부 (ex 마라탕의 토핑은 중복 가능, 햄버거의 세트 유무는 중복 불가), 그에 따른 예외처리" />
     <MESSAGE value="3/26 작업 내용&#10;DTO - DTO 생성자 깔끔하게 변경 (Member, MemberAddress 등등)&#10;&#10;Option - 옵션 조회 (옵션 그룹 기준) 기능 구현&#10;&#10;OptionGroup - 옵션 그룹 조회 (메뉴 기준) 기능 구현&#10;&#10;Menu - 메뉴 조회 (가게 기준) 기능 구현" />
     <MESSAGE value="3/27 작업 내용&#10;DB - 리뷰 테이블 임시 삭제 (추후 구현 예정), Order, OrderItem, OrderItemOption 테이블 생성 및 관리&#10;&#10;Cart - 장바구니 비우기 기능 구현&#10;&#10;CartItem - 장바구니에서 메뉴 삭제 기능 구현&#10;&#10;Order - 주문 생성 및 조회 기능 구현&#10;&#10;Store - 가게 조회 (이름 기준) 기능 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/27 작업 내용&#10;DB - 리뷰 테이블 임시 삭제 (추후 구현 예정), Order, OrderItem, OrderItemOption 테이블 생성 및 관리&#10;&#10;Cart - 장바구니 비우기 기능 구현&#10;&#10;CartItem - 장바구니에서 메뉴 삭제 기능 구현&#10;&#10;Order - 주문 생성 및 조회 기능 구현&#10;&#10;Store - 가게 조회 (이름 기준) 기능 구현" />
+    <MESSAGE value="3/29 작업 내용&#10;DB - 리뷰 테이블 구현 (Order와 연결, Member와 연결)&#10;&#10;Review - 리뷰 생성,삭제,조회 기능 구현 &#10;1. 주문을 했을때 자기가 한 주문에 대해서 리뷰를 할 수 있음 &#10;2. 장바구니에 메뉴를 추가 할때는 하나의 가게에서만 가능하도록&#10;3. 리뷰를 생성할 때 가게의 평점도 업데이트&#10;4. 조회는 자신이 쓴 리뷰와 특정 가게의 리뷰를 조회 할 수 있도록 구분&#10;&#10;Favorite - 가게를 찜하는 기능 구현 (가게 찜, 찜 삭제, 찜한 가게 조회 구현)&#10;&#10;다음에 할 것 - 현재까지는 주문 요청시 ENUM(PENDING) 상태가 되는데 배달 요청 사용자, 가게, 배달 하는 사람의 기능들로 Status 상태를 변경 가능하도록 하기&#10;&#10;리뷰 작성마다 가게 평점 업데이트를 조금 더 효율적으로 할 수 있을 것 같은 구글링 해보니 Redis라는게 있던데 찾아보고 필요하다면 공부 할 것" />
+    <MESSAGE value="4/2 작업 내용&#10;&#10;Docker를 통한 Redis 입문 및 학습&#10;RedisConfig 추가&#10;&#10;다음에 할 것 - 자주 조회 되고 데이터의 변경이 적은 기능 들에 Redis를 이용한 조회 해보기" />
+    <option name="LAST_COMMIT_MESSAGE" value="4/2 작업 내용&#10;&#10;Docker를 통한 Redis 입문 및 학습&#10;RedisConfig 추가&#10;&#10;다음에 할 것 - 자주 조회 되고 데이터의 변경이 적은 기능 들에 Redis를 이용한 조회 해보기" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

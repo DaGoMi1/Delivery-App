@@ -10,32 +10,22 @@ import java.util.stream.Collectors;
 @Data
 public class ResponseStoreDTO {
     private Long storeId;
-
     private String name;
-
     private Long memberId;
-
     private String description;
-
     private String phone;
-
     private String address;
-
     private Store.Status status;
-
     private String openingHours;
-
     private String logoUrl;
-
-    private Double rating;
-
     private Set<ResponseCategoryDTO> categories;
 
     private Timestamp createdAt;
-
     private Timestamp updatedAt;
 
-    public ResponseStoreDTO(Store store) {
+    private ResponseRatingDTO ratingDTO;
+
+    public ResponseStoreDTO(Store store, ResponseRatingDTO ratingDTO) {
         this.storeId = store.getId();
         this.name = store.getName();
         this.memberId = store.getMember().getId();
@@ -45,9 +35,11 @@ public class ResponseStoreDTO {
         this.status = store.getStatus();
         this.openingHours = store.getOpeningHours();
         this.logoUrl = store.getLogoUrl();
-        this.rating = store.getRating();
         this.categories = store.getCategories().stream().map(ResponseCategoryDTO::new).collect(Collectors.toSet());
+
         this.createdAt = store.getCreatedAt();
         this.updatedAt = store.getUpdatedAt();
+
+        this.ratingDTO = ratingDTO;
     }
 }
