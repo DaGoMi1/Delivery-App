@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
@@ -15,7 +16,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class FavoriteId {
+public class FavoriteId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
@@ -29,11 +30,12 @@ public class FavoriteId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FavoriteId that = (FavoriteId) o;
-        return store.equals(that.store) && member.equals(that.member);
+        return Objects.equals(store.getId(), that.store.getId()) &&
+                Objects.equals(member.getId(), that.member.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(store, member);
+        return Objects.hash(store.getId(), member.getId());
     }
 }

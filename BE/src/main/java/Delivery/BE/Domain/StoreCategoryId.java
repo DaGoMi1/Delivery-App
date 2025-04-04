@@ -30,11 +30,12 @@ public class StoreCategoryId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StoreCategoryId that = (StoreCategoryId) o;
-        return store.equals(that.store) && category.equals(that.category);
+        return Objects.equals(store.getId(), that.store.getId()) &&
+                Objects.equals(category.getId(), that.category.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(store, category);
+        return Objects.hash(store.getId(), category.getId());
     }
 }
