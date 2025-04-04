@@ -21,4 +21,7 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 
     @Query("SELECT COUNT(r) FROM Review r WHERE r.order.store.id = :storeId")
     int getReviewCountByStoreId(@Param("storeId") Long storeId);
+
+    @Query("SELECT COUNT(f) FROM Favorite f WHERE f.favoriteId.store.id = :storeId")
+    int getFavoriteCountByStoreId(@Param("storeId") Long storeId);
 }

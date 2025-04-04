@@ -22,9 +22,10 @@ public class FavoriteService {
     private final MemberService memberService;
     private final StoreService storeService;
     private final RedisRatingService redisRatingService;
+    private final RedisFavoriteService redisFavoriteService;
 
     @Transactional
-    public void createFavorite(CreateFavoriteDTO createFavoriteDTO) {
+    public void createFavorite(CreateFavoriteDTO createFavoriteDTO) { // 찜 추가
         Member member = memberService.getMemberInfo();
         Store store = storeService.findStoreById(createFavoriteDTO.getStoreId());
 
@@ -37,9 +38,11 @@ public class FavoriteService {
                 .build();
 
         favoriteRepository.save(favorite);
+
+        redisFavoriteService.updateFavorite(store.getId(), true); // Redis에 찜 개수 업데이트
     }
 
-    public List<ResponseFavoriteDTO> getFavorites() {
+    public List<ResponseFavoriteDTO> getFavorites() { // 찜한 가게 조회
         Member member = memberService.getMemberInfo();
         Set<Store> favorites = member.getFavoriteStores();
 
@@ -47,7 +50,8 @@ public class FavoriteService {
                 .map(favorite -> {
                     Long storeId = favorite.getId();
                     ResponseRatingDTO responseRatingDTO = redisRatingService.getRating(storeId); // 평점 DTO
-                    return new ResponseFavoriteDTO(favorite, responseRatingDTO); // 찜 반환 DTO에 평점 DTO 추가
+                    int favoriteCount = redisFavoriteService.getFavoriteCount(storeId);
+                    return new ResponseFavoriteDTO(favorite, responseRatingDTO, favoriteCount); // 찜 반환 DTO에 평점 DTO 추가
                 })
                 .collect(Collectors.toList());
     }
@@ -62,6 +66,8 @@ public class FavoriteService {
 
         Favorite favorite = findFavoriteById(favoriteId);
         favoriteRepository.delete(favorite);
+
+        redisFavoriteService.updateFavorite(storeId, false); // Redis에 찜 개수 업데이트
     }
 
     private boolean checkFavoriteToStore(FavoriteId favoriteId) {

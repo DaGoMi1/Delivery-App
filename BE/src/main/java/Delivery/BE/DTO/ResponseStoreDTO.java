@@ -25,7 +25,9 @@ public class ResponseStoreDTO {
 
     private ResponseRatingDTO ratingDTO;
 
-    public ResponseStoreDTO(Store store, ResponseRatingDTO ratingDTO) {
+    private int favoriteCount;
+
+    public ResponseStoreDTO(Store store, ResponseRatingDTO ratingDTO, int favoriteCount) {
         this.storeId = store.getId();
         this.name = store.getName();
         this.memberId = store.getMember().getId();
@@ -41,5 +43,7 @@ public class ResponseStoreDTO {
         this.updatedAt = store.getUpdatedAt();
 
         this.ratingDTO = ratingDTO;
+
+        this.favoriteCount = favoriteCount;
     }
 }
