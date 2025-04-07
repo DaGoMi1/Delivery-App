@@ -2,6 +2,7 @@ package Delivery.BE.Service;
 
 import Delivery.BE.DTO.CreateOrderDTO;
 import Delivery.BE.DTO.ResponseOrderDTO;
+import Delivery.BE.DTO.UpdateOrderDTO;
 import Delivery.BE.Domain.*;
 import Delivery.BE.Exception.ForbiddenException;
 import Delivery.BE.Exception.MenuUnavailableException;
@@ -21,6 +22,7 @@ public class OrderService {
     private final MemberService memberService;
     private final CartService cartService;
     private final OrderItemService orderItemService;
+    private final StoreService storeService;
 
     @Transactional
     public void createOrder(CreateOrderDTO createOrderDTO) {
@@ -59,6 +61,39 @@ public class OrderService {
         Member member = memberService.getMemberInfo();
         List<Order> orders = member.getOrders();
         return orders.stream().map(ResponseOrderDTO::new).toList();
+    }
+
+    public List<ResponseOrderDTO> getOrdersByStore(Long storeId) {
+        Store store = storeService.findStoreById(storeId);
+        storeService.checkStoreOwner(store);
+
+        List<Order> orders = store.getOrders();
+        return orders.stream().map(ResponseOrderDTO::new).toList();
+    }
+
+    @Transactional
+    public void updateOrderStatus(Long orderId, UpdateOrderDTO updateOrderDTO) {
+        Order order = findOrderById(orderId);
+        Member member = memberService.getMemberInfo();
+
+        if (!member.equals(order.getStore().getMember()))
+            throw new ForbiddenException("해당 주문 상태를 바꿀 권한이 없습니다.");
+
+        Order.Status current = order.getStatus();
+        Order.Status next = updateOrderDTO.getStatus();
+
+        if (!current.canTransitionTo(next))
+            throw new IllegalArgumentException("잘못된 주문 상태 전이입니다.");
+
+        if (updateOrderDTO.getStatus() == Order.Status.CANCELLED) { // 변경할 상태가 CANCELLED라면
+            if (updateOrderDTO.getCancelReason() == null || updateOrderDTO.getCancelReason().isBlank()) {
+                throw new IllegalArgumentException("주문 취소 사유를 입력해주세요.");
+            }
+            order.setCancelReason(updateOrderDTO.getCancelReason()); // Order 엔티티에 필드가 있어야겠지
+        }
+
+        order.setStatus(next);
+        orderRepository.save(order);
     }
 
     private int totalAmountCalculate(List<CartItem> cartItems) { // 주문 리스트 (장바구니 목록)로 총 가격 계산

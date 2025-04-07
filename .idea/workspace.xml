@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="4/3 작업 내용&#10;&#10;Redis 활용 - 가게 조회시 가게의 모든 리뷰의 평점을 통해 가게의 평점을 계산하는데&#10;매번 DB를 통해 조회시 성능이 떨어지기에, 서버가 시작될 때 DB에 저장된 데이터를 통해 각 가게의 점수 누적합, 리뷰 개수를 Redis에 저장&#10;이후 가게가 조회 되거나 자신이 찜한 가게를 조회 할때 DB를 거치지않고 Redis에서 바로 평점을 계산하여 반환&#10;&#10;다음에 할 것 - Redis, Docker 아직 알아야 할 것이 많음 -&gt; 충분히 공부하기&#10;리뷰 외에 데이터를 자주 조회 하는 부분에 대해 Redis 활용">
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Enum/SortType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/RedisFavoriteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/SortService.java" afterDir="false" />
+    <list default="true" id="dfb28497-9435-4471-b7e4-b25c23754bea" name="변경" comment="4/4 작업 내용&#10;&#10;Store - 가게 조회 시 정렬 타입 추가, SortType Enum [FAVORITE, CREATED_AT, RATING] 추가, 조회 시 찜 개수 추가 및 찜 개수는 Redis에서 관리&#10;&#10;RedisInitializerService - 서버 시작시 DB에서 각 가게의 찜 개수를 Redis에 저장&#10;&#10;SortService - 각 SortType에 따른 가게 리스트 정렬 기능">
+      <change afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/UpdateOrderDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BE/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseFavoriteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseFavoriteDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseStoreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/DTO/ResponseStoreDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/FavoriteId.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/FavoriteId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MenuCategoryId.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/MenuCategoryId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/StoreCategoryId.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/StoreCategoryId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Repository/StoreRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FavoriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/FavoriteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/RedisInitializerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/RedisInitializerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/StoreService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Domain/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/SortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/Delivery/BE/Service/SortService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +192,9 @@
       <workItem from="1743602618825" duration="15537000" />
       <workItem from="1743668450867" duration="56000" />
       <workItem from="1743668982951" duration="647000" />
-      <workItem from="1743745198482" duration="8909000" />
+      <workItem from="1743745198482" duration="9928000" />
+      <workItem from="1743829908056" duration="269000" />
+      <workItem from="1744031016445" duration="3530000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -379,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743667844605</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="4/4 작업 내용&#10;&#10;Store - 가게 조회 시 정렬 타입 추가, SortType Enum [FAVORITE, CREATED_AT, RATING] 추가, 조회 시 찜 개수 추가 및 찜 개수는 Redis에서 관리&#10;&#10;RedisInitializerService - 서버 시작시 DB에서 각 가게의 찜 개수를 Redis에 저장&#10;&#10;SortService - 각 SortType에 따른 가게 리스트 정렬 기능">
+      <option name="closed" value="true" />
+      <created>1743758021971</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1743758021971</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +408,8 @@
     <MESSAGE value="3/29 작업 내용&#10;DB - 리뷰 테이블 구현 (Order와 연결, Member와 연결)&#10;&#10;Review - 리뷰 생성,삭제,조회 기능 구현 &#10;1. 주문을 했을때 자기가 한 주문에 대해서 리뷰를 할 수 있음 &#10;2. 장바구니에 메뉴를 추가 할때는 하나의 가게에서만 가능하도록&#10;3. 리뷰를 생성할 때 가게의 평점도 업데이트&#10;4. 조회는 자신이 쓴 리뷰와 특정 가게의 리뷰를 조회 할 수 있도록 구분&#10;&#10;Favorite - 가게를 찜하는 기능 구현 (가게 찜, 찜 삭제, 찜한 가게 조회 구현)&#10;&#10;다음에 할 것 - 현재까지는 주문 요청시 ENUM(PENDING) 상태가 되는데 배달 요청 사용자, 가게, 배달 하는 사람의 기능들로 Status 상태를 변경 가능하도록 하기&#10;&#10;리뷰 작성마다 가게 평점 업데이트를 조금 더 효율적으로 할 수 있을 것 같은 구글링 해보니 Redis라는게 있던데 찾아보고 필요하다면 공부 할 것" />
     <MESSAGE value="4/2 작업 내용&#10;&#10;Docker를 통한 Redis 입문 및 학습&#10;RedisConfig 추가&#10;&#10;다음에 할 것 - 자주 조회 되고 데이터의 변경이 적은 기능 들에 Redis를 이용한 조회 해보기" />
     <MESSAGE value="4/3 작업 내용&#10;&#10;Redis 활용 - 가게 조회시 가게의 모든 리뷰의 평점을 통해 가게의 평점을 계산하는데&#10;매번 DB를 통해 조회시 성능이 떨어지기에, 서버가 시작될 때 DB에 저장된 데이터를 통해 각 가게의 점수 누적합, 리뷰 개수를 Redis에 저장&#10;이후 가게가 조회 되거나 자신이 찜한 가게를 조회 할때 DB를 거치지않고 Redis에서 바로 평점을 계산하여 반환&#10;&#10;다음에 할 것 - Redis, Docker 아직 알아야 할 것이 많음 -&gt; 충분히 공부하기&#10;리뷰 외에 데이터를 자주 조회 하는 부분에 대해 Redis 활용" />
-    <option name="LAST_COMMIT_MESSAGE" value="4/3 작업 내용&#10;&#10;Redis 활용 - 가게 조회시 가게의 모든 리뷰의 평점을 통해 가게의 평점을 계산하는데&#10;매번 DB를 통해 조회시 성능이 떨어지기에, 서버가 시작될 때 DB에 저장된 데이터를 통해 각 가게의 점수 누적합, 리뷰 개수를 Redis에 저장&#10;이후 가게가 조회 되거나 자신이 찜한 가게를 조회 할때 DB를 거치지않고 Redis에서 바로 평점을 계산하여 반환&#10;&#10;다음에 할 것 - Redis, Docker 아직 알아야 할 것이 많음 -&gt; 충분히 공부하기&#10;리뷰 외에 데이터를 자주 조회 하는 부분에 대해 Redis 활용" />
+    <MESSAGE value="4/4 작업 내용&#10;&#10;Store - 가게 조회 시 정렬 타입 추가, SortType Enum [FAVORITE, CREATED_AT, RATING] 추가, 조회 시 찜 개수 추가 및 찜 개수는 Redis에서 관리&#10;&#10;RedisInitializerService - 서버 시작시 DB에서 각 가게의 찜 개수를 Redis에 저장&#10;&#10;SortService - 각 SortType에 따른 가게 리스트 정렬 기능" />
+    <option name="LAST_COMMIT_MESSAGE" value="4/4 작업 내용&#10;&#10;Store - 가게 조회 시 정렬 타입 추가, SortType Enum [FAVORITE, CREATED_AT, RATING] 추가, 조회 시 찜 개수 추가 및 찜 개수는 Redis에서 관리&#10;&#10;RedisInitializerService - 서버 시작시 DB에서 각 가게의 찜 개수를 Redis에 저장&#10;&#10;SortService - 각 SortType에 따른 가게 리스트 정렬 기능" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
