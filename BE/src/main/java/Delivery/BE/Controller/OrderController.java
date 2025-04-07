@@ -2,6 +2,7 @@ package Delivery.BE.Controller;
 
 import Delivery.BE.DTO.CreateOrderDTO;
 import Delivery.BE.DTO.ResponseOrderDTO;
+import Delivery.BE.DTO.UpdateOrderDTO;
 import Delivery.BE.Service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,20 @@ public class OrderController {
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getAllOrders() {
+    public ResponseEntity<?> getAllMemberOrders() {
         List<ResponseOrderDTO> orderDTOList = orderService.getOrdersByMember();
         return ResponseEntity.ok(orderDTOList);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOrderByStoreId(@PathVariable Long id) {
+        List<ResponseOrderDTO> orderDTOList = orderService.getOrdersByStore(id);
+        return ResponseEntity.ok(orderDTOList);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateOrderStatus(@PathVariable Long id, @RequestBody UpdateOrderDTO updateOrderDTO) {
+        orderService.updateOrderStatus(id, updateOrderDTO);
+        return ResponseEntity.ok("주문 상태 변경 완료");
     }
 }
