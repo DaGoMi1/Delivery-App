@@ -6,6 +6,7 @@ import Delivery.BE.DTO.UpdateOrderDTO;
 import Delivery.BE.Domain.*;
 import Delivery.BE.Exception.ForbiddenException;
 import Delivery.BE.Exception.MenuUnavailableException;
+import Delivery.BE.Exception.MissingRequiredDataException;
 import Delivery.BE.Exception.NotFoundException;
 import Delivery.BE.Repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class OrderService {
     private final StoreService storeService;
 
     @Transactional
-    public void createOrder(CreateOrderDTO createOrderDTO) {
+    public Long createOrder(CreateOrderDTO createOrderDTO) {
         Member member = memberService.getMemberInfo(); // 사용자
         Cart cart = member.getCart(); // 장바구니
 
@@ -55,6 +56,8 @@ public class OrderService {
         orderItemService.createOrderItemByList(order, cart.getCartItems()); // 주문의 각 메뉴 생성
 
         cartService.emptyCart(); // 장바구니 비우기
+
+        return order.getId();
     }
 
     public List<ResponseOrderDTO> getOrdersByMember() {
@@ -83,11 +86,11 @@ public class OrderService {
         Order.Status next = updateOrderDTO.getStatus();
 
         if (!current.canTransitionTo(next))
-            throw new IllegalArgumentException("잘못된 주문 상태 전이입니다.");
+            throw new ForbiddenException("잘못된 주문 상태 전이입니다.");
 
         if (updateOrderDTO.getStatus() == Order.Status.CANCELLED) { // 변경할 상태가 CANCELLED라면
             if (updateOrderDTO.getCancelReason() == null || updateOrderDTO.getCancelReason().isBlank()) {
-                throw new IllegalArgumentException("주문 취소 사유를 입력해주세요.");
+                throw new MissingRequiredDataException("주문 취소 사유를 입력해주세요.");
             }
             order.setCancelReason(updateOrderDTO.getCancelReason()); // Order 엔티티에 필드가 있어야겠지
         }
