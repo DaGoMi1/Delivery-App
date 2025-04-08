@@ -4,6 +4,7 @@ import Delivery.BE.DTO.CreateStoreDTO;
 import Delivery.BE.DTO.ResponseStoreDTO;
 import Delivery.BE.DTO.UpdateStoreDTO;
 import Delivery.BE.Domain.Member;
+import Delivery.BE.Enum.SortType;
 import Delivery.BE.Service.MemberService;
 import Delivery.BE.Service.StoreService;
 import jakarta.validation.Valid;
@@ -23,7 +24,7 @@ public class StoreController {
     @PostMapping("")
     public ResponseEntity<?> createStore(@Valid @RequestBody CreateStoreDTO createStoreDTO) {
         Member member = memberService.getMemberInfo();
-        storeService.createStore(createStoreDTO ,member);
+        storeService.createStore(createStoreDTO, member);
         return ResponseEntity.ok("가게 생성 완료");
     }
 
@@ -40,14 +41,17 @@ public class StoreController {
     }
 
     @GetMapping("/category/{id}") // 카테고리로 가게 조회
-    public ResponseEntity<?> getStoreListByCategory(@PathVariable Long id) {
-        List<ResponseStoreDTO> list = storeService.getStoresByCategory(id);
+    public ResponseEntity<?> getStoreListByCategory(@PathVariable Long id, @RequestParam String type) {
+        SortType sortType = SortType.fromString(type);
+        List<ResponseStoreDTO> list = storeService.getStoresByCategory(id, sortType);
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("") // 이름으로 가게 조회
-    public ResponseEntity<?> getStoreListByName(@RequestParam String name) {
-        List<ResponseStoreDTO> list = storeService.getStoresByName(name);
+    public ResponseEntity<?> getStoreListByName(@RequestParam String name,
+                                                @RequestParam(defaultValue = "favorite") String type) {
+        SortType sortType = SortType.fromString(type);
+        List<ResponseStoreDTO> list = storeService.getStoresByName(name, sortType);
         return ResponseEntity.ok(list);
     }
 }

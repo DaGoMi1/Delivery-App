@@ -18,7 +18,7 @@ public class RedisInitializerService {
 
     @EventListener(ApplicationReadyEvent.class) // Application 시작 후 실행되도록 변경
     @PostConstruct // 서버가 실행될 때 자동 실행
-    public void loadRatingsIntoRedis() {
+    public void loadRatingsIntoRedis() { // 별점 Redis에 저장
         List<Store> stores = storeService.findAllStores();
         for (Store store : stores) {
             Long storeId = store.getId();
@@ -27,6 +27,18 @@ public class RedisInitializerService {
 
             redisTemplate.opsForValue().set("store:rating_sum:" + storeId, ratingSum);
             redisTemplate.opsForValue().set("store:review_count:" + storeId, reviewCount);
+        }
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    @PostConstruct
+    public void loadFavoritesIntoRedis() {
+        List<Store> stores = storeService.findAllStores();
+        for (Store store : stores) {
+            Long storeId = store.getId();
+            int favoriteCount = storeService.countFavoriteStore(storeId);
+
+            redisTemplate.opsForValue().set("store:favorite_count:" + storeId, favoriteCount);
         }
     }
 }

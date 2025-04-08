@@ -30,11 +30,12 @@ public class MenuCategoryId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MenuCategoryId that = (MenuCategoryId) o;
-        return menu.equals(that.menu) && category.equals(that.category);
+        return Objects.equals(menu.getId(), that.menu.getId()) &&
+                Objects.equals(category.getId(), that.category.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(menu, category);
+        return Objects.hash(menu.getId(), category.getId());
     }
 }

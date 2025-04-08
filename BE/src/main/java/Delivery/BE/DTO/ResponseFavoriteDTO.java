@@ -13,7 +13,9 @@ public class ResponseFavoriteDTO {
 
     private ResponseRatingDTO ratingDTO;
 
-    public ResponseFavoriteDTO(Store store, ResponseRatingDTO ratingDTO) {
+    private int favoriteCount;
+
+    public ResponseFavoriteDTO(Store store, ResponseRatingDTO ratingDTO, int favoriteCount) {
         this.storeId = store.getId();
 
         this.storeName = store.getName();
@@ -21,5 +23,7 @@ public class ResponseFavoriteDTO {
         this.storeImage = store.getLogoUrl();
 
         this.ratingDTO = ratingDTO;
+
+        this.favoriteCount = favoriteCount;
     }
 }
