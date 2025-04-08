@@ -42,7 +42,8 @@ ERD 변경 과정\
 [ERD 3차 변경](https://drive.google.com/file/d/11MP8k2anu-_WZYavYzYC1PNzRgoMvrgH/view?usp=sharing)\
 [ERD 4차 변경](https://drive.google.com/file/d/1y74OE9vOHWuTnC3YISA0UDA689GYEMq1/view?usp=sharing)\
 [ERD 5차 변경](https://drive.google.com/file/d/1vfxFoXPVWFIdTNrlR8xAwDWAfgnOgbB3/view?usp=sharing)\
-[ERD 6차 변경](https://drive.google.com/file/d/1tHLph0VJp2bRF5eRd_zH2hK50pRFzCLA/view?usp=sharing)
+[ERD 6차 변경](https://drive.google.com/file/d/1tHLph0VJp2bRF5eRd_zH2hK50pRFzCLA/view?usp=sharing)\
+[ERD 7차 변경](https://drive.google.com/file/d/1PV8I4u3kLPMx8DgiyJzjQVLFhwCwfmUM/view?usp=sharing)
 
 
 ---
