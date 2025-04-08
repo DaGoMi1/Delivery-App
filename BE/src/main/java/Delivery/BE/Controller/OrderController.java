@@ -20,8 +20,8 @@ public class OrderController {
 
     @PostMapping("")
     public ResponseEntity<?> createOrder(@Valid @RequestBody CreateOrderDTO createOrderDTO) {
-        orderService.createOrder(createOrderDTO);
-        return ResponseEntity.ok("주문 생성 완료");
+        Long orderId = orderService.createOrder(createOrderDTO);
+        return ResponseEntity.ok("Order ID: " + orderId);
     }
 
     @GetMapping("")

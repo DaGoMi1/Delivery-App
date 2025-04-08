@@ -48,6 +48,9 @@ public class Order {
     @JoinColumn(name = "store_id", nullable = false) // Member 와 연결
     private Store store;
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private TossPayment tossPayment;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 

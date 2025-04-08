@@ -1,6 +1,6 @@
 package Delivery.BE.Service;
 
-import Delivery.BE.DTO.AccessTokenResponseDTO;
+import Delivery.BE.DTO.ResponseAccessTokenDTO;
 import Delivery.BE.DTO.ResponseJwtDTO;
 import Delivery.BE.DTO.LoginDTO;
 import Delivery.BE.Domain.Member;
@@ -34,7 +34,7 @@ public class AuthService {
         }
     }
 
-    public AccessTokenResponseDTO reissueAccessToken(String refreshToken) {
+    public ResponseAccessTokenDTO reissueAccessToken(String refreshToken) {
         refreshToken = refreshToken.substring(7); // "Bearer " 부분 제거
         String userId = jwtUtil.extractUserId(refreshToken); // Refresh 토큰에서 userId 추출
 
@@ -44,10 +44,10 @@ public class AuthService {
 
         String newAccessToken = jwtUtil.generateAccessToken(userId); // Access 토큰 발급
 
-        AccessTokenResponseDTO accessTokenResponseDTO = new AccessTokenResponseDTO();
-        accessTokenResponseDTO.setAccessToken(newAccessToken); // DTO 에 담기
+        ResponseAccessTokenDTO responseAccessTokenDTO = new ResponseAccessTokenDTO();
+        responseAccessTokenDTO.setAccessToken(newAccessToken); // DTO 에 담기
 
-        return accessTokenResponseDTO;
+        return responseAccessTokenDTO;
     }
 
     private ResponseJwtDTO generateJwtResponse(String userId) {

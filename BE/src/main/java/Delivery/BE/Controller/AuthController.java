@@ -1,6 +1,6 @@
 package Delivery.BE.Controller;
 
-import Delivery.BE.DTO.AccessTokenResponseDTO;
+import Delivery.BE.DTO.ResponseAccessTokenDTO;
 import Delivery.BE.DTO.ResponseJwtDTO;
 import Delivery.BE.DTO.LoginDTO;
 import Delivery.BE.Service.AuthService;
@@ -23,7 +23,7 @@ public class AuthController {
     @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(@RequestHeader("Authorization") String refreshToken) {
         // Refresh 토큰으로 새로운 Access 토큰 발급하는 로직 호출
-        AccessTokenResponseDTO accessTokenResponseDTO = authService.reissueAccessToken(refreshToken);
-        return ResponseEntity.ok(accessTokenResponseDTO);
+        ResponseAccessTokenDTO responseAccessTokenDTO = authService.reissueAccessToken(refreshToken);
+        return ResponseEntity.ok(responseAccessTokenDTO);
     }
 }
